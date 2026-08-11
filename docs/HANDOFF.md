@@ -1,5 +1,11 @@
 # Handoff — ’t Zaffels Koffiehuisje
 
+## Live URLs
+
+- Production: https://saffels-koffiehuisje.vercel.app
+- GitHub: https://github.com/BeCreativeRuben/SaffelsKoffiehuisjeDeOntwaking
+- Vercel project: `studiothielman-projects/saffels-koffiehuisje` (GitHub repo connected)
+
 ## How bookings work (for the owner)
 
 1. A guest fills in **Zaal aanvragen** on the website.
@@ -17,9 +23,9 @@ After approval, contact the guest yourself (mail/phone) to settle practical deta
 - Changes (text, photos, new section, contact details): send what should change; you get an invoice for that work only.
 - Hosting stays on free tiers as long as traffic stays modest; say so before any paid upgrade.
 
-## Environment setup
+## Environment setup (required before bookings work)
 
-Copy `.env.example` → `.env.local` (local) and set the same vars in the Vercel project:
+Copy `.env.example` → `.env.local` (local) and set the same vars in the Vercel project (**Settings → Environment Variables**), then redeploy:
 
 | Variable | Purpose |
 |---|---|
@@ -27,7 +33,7 @@ Copy `.env.example` → `.env.local` (local) and set the same vars in the Vercel
 | `RESEND_API_KEY` | Resend API key |
 | `FROM_EMAIL` | Sender (verify domain in Resend for production) |
 | `OWNER_EMAIL` | Where approve/decline mails go |
-| `NEXT_PUBLIC_SITE_URL` | Public site URL, no trailing slash |
+| `NEXT_PUBLIC_SITE_URL` | `https://saffels-koffiehuisje.vercel.app` (or custom domain later) |
 | `NEXT_PUBLIC_PHONE` | Optional phone on contact page |
 | `NEXT_PUBLIC_ADDRESS` | Optional address on contact page |
 
@@ -35,13 +41,16 @@ Optional: run `db/schema.sql` in the Neon SQL editor (the app also creates the t
 
 ## Soft-launch checklist
 
-- [ ] Neon DB connected in Vercel
+- [x] Site deployed on Vercel, linked to GitHub
+- [x] Marketing pages online (Home, De zaal, Aanvragen, Contact, Bedankt)
+- [ ] Neon DB connected in Vercel env
 - [ ] Resend key set; send a test booking to yourself
 - [ ] Approve link works → guest “bevestiging” mail
 - [ ] Decline link works → guest “niet bevestigd” mail
 - [ ] Replace placeholder copy/address/phone with real client details
 - [ ] Add real photos of the zaal on Home / De zaal
 - [ ] Point custom domain when ready
+- [ ] Walk through one real request with the client
 
 ## Content still needed from the client
 
