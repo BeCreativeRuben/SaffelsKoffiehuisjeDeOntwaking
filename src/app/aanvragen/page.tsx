@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { RequestForm } from "@/components/RequestForm";
+import { Squiggle } from "@/components/Ornaments";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -7,28 +8,47 @@ export const metadata: Metadata = {
   description: `Vraag een datum aan bij ${site.name}. Je krijgt bericht zodra we je aanvraag bekeken hebben.`,
 };
 
+const steps = [
+  { title: "Stuur je aanvraag", text: "Vul het formulier in — twee minuutjes." },
+  { title: "Wij checken de agenda", text: "We bekijken of je datum past." },
+  { title: "Je hoort van ons", text: "Bevestiging per mail, daarna stemmen we de details af." },
+];
+
 export default function AanvragenPage() {
   return (
-    <div className="site-shell py-14 sm:py-20">
-      <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-olive">
-            Aanvragen
-          </p>
-          <h1 className="display mt-3 text-4xl text-coffee sm:text-5xl">
-            Vraag je datum aan
+    <div className="site-shell py-16 sm:py-20">
+      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div className="lg:sticky lg:top-28">
+          <p className="section-label">Aanvragen</p>
+          <h1 className="display mt-4 text-5xl text-espresso sm:text-6xl">
+            Vraag je{" "}
+            <span className="display-italic text-walnut">datum</span> aan
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-            Vul het formulier in. Je ontvangt eerst een bevestiging van
-            ontvangst. Zodra we gecontroleerd hebben of de datum past, krijg je
-            bericht.
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-soft">
+            Comfortabel voor zo’n {site.capacity} personen. Geen account, geen
+            gedoe.
           </p>
-          <p className="mt-4 text-sm leading-relaxed text-ink-soft">
-            Comfortabel voor zo’n {site.capacity} personen.
-          </p>
+
+          <Squiggle className="mt-8 h-3 w-32 text-caramel" />
+
+          <ol className="mt-8 space-y-5">
+            {steps.map((step, i) => (
+              <li key={step.title} className="flex gap-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-espresso text-sm font-bold text-cream">
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="font-semibold text-coffee">{step.title}</p>
+                  <p className="mt-0.5 text-sm leading-relaxed text-ink-soft">
+                    {step.text}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <div className="rounded-[1.5rem] border border-line bg-paper/70 p-5 sm:p-8 backdrop-blur-sm">
+        <div className="tile p-6 sm:p-9">
           <RequestForm />
         </div>
       </div>

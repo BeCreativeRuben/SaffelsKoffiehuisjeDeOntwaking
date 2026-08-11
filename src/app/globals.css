@@ -1,29 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #d7ddd4;
-  --bg-deep: #c5cec0;
-  --paper: #f3f0e8;
-  --ink: #1c1914;
-  --ink-soft: #4a453c;
-  --coffee: #3f2a1c;
-  --walnut: #6b4a32;
-  --olive: #5a6b45;
-  --olive-soft: #8a9a72;
-  --line: color-mix(in srgb, var(--coffee) 18%, transparent);
-  --glow: color-mix(in srgb, var(--olive) 22%, transparent);
+  --cream: #f4ecdd;
+  --cream-deep: #ecdfc8;
+  --paper: #fbf7ee;
+  --espresso: #2a1a0f;
+  --espresso-deep: #1e1108;
+  --coffee: #402a18;
+  --walnut: #7c4f2c;
+  --caramel: #c08a4e;
+  --terracotta: #b96a47;
+  --olive: #5f6f47;
+  --sage: #97a37e;
+  --ink: #2b2115;
+  --ink-soft: #6a5d4b;
+  --line: color-mix(in srgb, var(--coffee) 16%, transparent);
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg-deep: var(--bg-deep);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
   --color-paper: var(--paper);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
+  --color-espresso: var(--espresso);
   --color-coffee: var(--coffee);
   --color-walnut: var(--walnut);
+  --color-caramel: var(--caramel);
+  --color-terracotta: var(--terracotta);
   --color-olive: var(--olive);
-  --color-olive-soft: var(--olive-soft);
+  --color-sage: var(--sage);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
   --color-line: var(--line);
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
@@ -42,10 +48,22 @@ body {
   min-height: 100%;
   color: var(--ink);
   background:
-    radial-gradient(1200px 600px at 10% -10%, var(--glow), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--walnut) 16%, transparent), transparent 50%),
-    linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 55%, #cfd6c8 100%);
+    radial-gradient(1000px 520px at 85% -5%, color-mix(in srgb, var(--caramel) 14%, transparent), transparent 60%),
+    radial-gradient(900px 600px at -10% 20%, color-mix(in srgb, var(--sage) 16%, transparent), transparent 55%),
+    linear-gradient(170deg, var(--cream) 0%, var(--cream-deep) 100%);
   font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Film grain over everything, purely decorative */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 a {
@@ -54,12 +72,12 @@ a {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--olive) 35%, white);
-  color: var(--ink);
+  background: color-mix(in srgb, var(--caramel) 40%, white);
+  color: var(--espresso);
 }
 
 .site-shell {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1120px, calc(100% - 2.5rem));
   margin-inline: auto;
 }
 
@@ -67,8 +85,35 @@ a {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.02;
 }
+
+.display-italic {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.section-label::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--olive);
+}
+
+/* ---------- Buttons ---------- */
 
 .btn {
   display: inline-flex;
@@ -76,11 +121,12 @@ a {
   justify-content: center;
   gap: 0.5rem;
   min-height: 3rem;
-  padding: 0.75rem 1.35rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 600;
   letter-spacing: 0.01em;
+  cursor: pointer;
   transition:
     transform 180ms ease,
     background-color 180ms ease,
@@ -90,13 +136,17 @@ a {
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn-primary {
-  background: var(--coffee);
-  color: var(--paper);
-  box-shadow: 0 10px 24px color-mix(in srgb, var(--coffee) 25%, transparent);
+  background: var(--espresso);
+  color: var(--cream);
+  box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--espresso) 55%, transparent);
 }
 
 .btn-primary:hover {
@@ -104,7 +154,7 @@ a {
 }
 
 .btn-ghost {
-  background: color-mix(in srgb, var(--paper) 55%, transparent);
+  background: color-mix(in srgb, var(--paper) 60%, transparent);
   border-color: var(--line);
   color: var(--coffee);
   backdrop-filter: blur(6px);
@@ -112,7 +162,132 @@ a {
 
 .btn-ghost:hover {
   background: var(--paper);
+  border-color: color-mix(in srgb, var(--coffee) 30%, transparent);
 }
+
+.btn-cream {
+  background: var(--cream);
+  color: var(--espresso);
+  box-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.45);
+}
+
+.btn-cream:hover {
+  background: var(--paper);
+}
+
+.btn-sm {
+  min-height: 2.5rem;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Surfaces ---------- */
+
+.tile {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px -30px color-mix(in srgb, var(--espresso) 35%, transparent);
+}
+
+.arch {
+  border-radius: 999px 999px 1.25rem 1.25rem;
+  overflow: hidden;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--coffee);
+}
+
+.chip::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--terracotta);
+}
+
+.band-dark {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(800px 400px at 90% 0%, color-mix(in srgb, var(--caramel) 22%, transparent), transparent 60%),
+    linear-gradient(165deg, #38220f 0%, var(--espresso) 55%, var(--espresso-deep) 100%);
+  color: var(--cream);
+}
+
+.band-olive {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(700px 380px at 15% 10%, color-mix(in srgb, var(--sage) 40%, transparent), transparent 60%),
+    linear-gradient(160deg, #67754e 0%, var(--olive) 60%, #4c5a38 100%);
+  color: var(--cream);
+}
+
+/* ---------- Marquee ---------- */
+
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Steam ---------- */
+
+.steam path {
+  opacity: 0;
+  animation: steam-rise 2.8s ease-in-out infinite;
+}
+
+.steam path:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.steam path:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  40% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-7px);
+  }
+}
+
+/* ---------- Forms ---------- */
 
 .field {
   display: flex;
@@ -132,7 +307,7 @@ a {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--paper) 88%, white);
+  background: color-mix(in srgb, white 55%, var(--paper));
   color: var(--ink);
   padding: 0.8rem 0.95rem;
   font: inherit;
@@ -145,14 +320,16 @@ a {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: color-mix(in srgb, var(--olive) 55%, var(--line));
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--olive) 20%, transparent);
+  border-color: color-mix(in srgb, var(--caramel) 65%, var(--line));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--caramel) 22%, transparent);
 }
 
 .field textarea {
   min-height: 7rem;
   resize: vertical;
 }
+
+/* ---------- Motion ---------- */
 
 .fade-up {
   animation: fade-up 700ms ease both;
@@ -163,13 +340,17 @@ a {
 }
 
 .fade-up-delay-2 {
-  animation: fade-up 900ms 220ms ease both;
+  animation: fade-up 900ms 240ms ease both;
+}
+
+.fade-up-delay-3 {
+  animation: fade-up 900ms 360ms ease both;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -177,16 +358,45 @@ a {
   }
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fade-up,
   .fade-up-delay,
   .fade-up-delay-2,
-  .btn {
+  .fade-up-delay-3 {
     animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 
+  .marquee-track {
+    animation: none;
+  }
+
+  .steam path {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .btn,
   .btn:hover {
     transform: none;
+    transition: none;
   }
 }

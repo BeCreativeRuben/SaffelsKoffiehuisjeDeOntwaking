@@ -1,35 +1,38 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
 
 const links = [
-  { href: "/", label: "Home" },
   { href: "/de-zaal", label: "De zaal" },
-  { href: "/aanvragen", label: "Aanvragen" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
 export function Header() {
   return (
-    <header className="relative z-20 pt-5">
-      <div className="site-shell flex items-center justify-between gap-4">
-        <Link href="/" className="group min-w-0">
-          <p className="display text-xl text-coffee sm:text-2xl group-hover:opacity-80 transition-opacity">
-            {site.name}
-          </p>
+    <header className="sticky top-0 z-40 border-b border-line/60 bg-cream/80 backdrop-blur-md">
+      <div className="site-shell flex items-center justify-between gap-4 py-3.5">
+        <Link href="/" className="group flex min-w-0 items-baseline gap-2">
+          <span className="display text-lg text-espresso transition-opacity group-hover:opacity-75 sm:text-xl">
+            ’t Zaffels
+          </span>
+          <span className="display-italic hidden text-lg text-walnut sm:inline">
+            Koffiehuisje
+          </span>
         </Link>
         <nav
           aria-label="Hoofdnavigatie"
-          className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-semibold text-coffee/85"
+          className="flex items-center gap-2 sm:gap-5"
         >
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-coffee transition-colors"
+              className="text-sm font-semibold text-coffee/80 transition-colors hover:text-espresso"
             >
               {link.label}
             </Link>
           ))}
+          <Link href="/aanvragen" className="btn btn-primary btn-sm">
+            Zaal aanvragen
+          </Link>
         </nav>
       </div>
     </header>
