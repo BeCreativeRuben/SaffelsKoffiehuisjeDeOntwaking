@@ -7,13 +7,13 @@ const links = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line/60 bg-cream/80 backdrop-blur-md">
-      <div className="site-shell flex items-center justify-between gap-4 py-3.5">
+    <header className="sticky top-0 z-40 border-b border-line/70 bg-cream/85 backdrop-blur-md">
+      <div className="site-shell flex items-center justify-between gap-4 py-3">
         <Link href="/" className="group flex min-w-0 items-baseline gap-2">
           <span className="display text-lg text-espresso transition-opacity group-hover:opacity-75 sm:text-xl">
             ’t Zaffels
           </span>
-          <span className="display-italic hidden text-lg text-walnut sm:inline">
+          <span className="script hidden text-xl text-tomato sm:inline">
             Koffiehuisje
           </span>
         </Link>
@@ -25,7 +25,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-coffee/80 transition-colors hover:text-espresso"
+              className="text-sm font-semibold text-coffee/80 transition-colors hover:text-tomato"
             >
               {link.label}
             </Link>

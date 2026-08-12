@@ -1,20 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f4ecdd;
-  --cream-deep: #ecdfc8;
-  --paper: #fbf7ee;
-  --espresso: #2a1a0f;
-  --espresso-deep: #1e1108;
-  --coffee: #402a18;
-  --walnut: #7c4f2c;
+  --cream: #f6eeda;
+  --cream-deep: #efe3c8;
+  --paper: #fdf8ec;
+  --espresso: #3a2718;
+  --espresso-deep: #2b1c10;
+  --coffee: #503522;
+  --walnut: #7a5638;
   --caramel: #c08a4e;
-  --terracotta: #b96a47;
-  --olive: #5f6f47;
-  --sage: #97a37e;
-  --ink: #2b2115;
-  --ink-soft: #6a5d4b;
-  --line: color-mix(in srgb, var(--coffee) 16%, transparent);
+  --tomato: #b23a2d;
+  --tomato-deep: #8f2c21;
+  --terracotta: #b23a2d;
+  --olive: #64744b;
+  --sage: #8a9a72;
+  --ink: #33261a;
+  --ink-soft: #6e5d49;
+  --line: color-mix(in srgb, var(--coffee) 18%, transparent);
 }
 
 @theme inline {
@@ -25,6 +27,7 @@
   --color-coffee: var(--coffee);
   --color-walnut: var(--walnut);
   --color-caramel: var(--caramel);
+  --color-tomato: var(--tomato);
   --color-terracotta: var(--terracotta);
   --color-olive: var(--olive);
   --color-sage: var(--sage);
@@ -33,6 +36,7 @@
   --color-line: var(--line);
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
+  --font-script: var(--font-script);
 }
 
 * {
@@ -48,13 +52,12 @@ body {
   min-height: 100%;
   color: var(--ink);
   background:
-    radial-gradient(1000px 520px at 85% -5%, color-mix(in srgb, var(--caramel) 14%, transparent), transparent 60%),
-    radial-gradient(900px 600px at -10% 20%, color-mix(in srgb, var(--sage) 16%, transparent), transparent 55%),
-    linear-gradient(170deg, var(--cream) 0%, var(--cream-deep) 100%);
+    radial-gradient(900px 500px at 90% -5%, color-mix(in srgb, var(--caramel) 10%, transparent), transparent 60%),
+    linear-gradient(175deg, var(--cream) 0%, var(--cream-deep) 100%);
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
-/* Film grain over everything, purely decorative */
+/* Old-paper grain, purely decorative */
 body::after {
   content: "";
   position: fixed;
@@ -72,7 +75,7 @@ a {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--caramel) 40%, white);
+  background: color-mix(in srgb, var(--tomato) 25%, white);
   color: var(--espresso);
 }
 
@@ -81,11 +84,13 @@ a {
   margin-inline: auto;
 }
 
+/* ---------- Type ---------- */
+
 .display {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.02;
+  line-height: 1.04;
 }
 
 .display-italic {
@@ -94,23 +99,70 @@ a {
   font-weight: 400;
 }
 
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--olive);
+.script {
+  font-family: var(--font-script), "Segoe Script", cursive;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
-.section-label::before {
-  content: "";
-  width: 1.75rem;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--olive);
+.section-label {
+  display: inline-block;
+  font-family: var(--font-script), cursive;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--tomato);
+}
+
+/* ---------- Gingham (grandma's tablecloth) ---------- */
+
+.gingham {
+  background-color: #faf3e3;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--tomato) 32%, transparent) 0 10px,
+      transparent 10px 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--tomato) 32%, transparent) 0 10px,
+      transparent 10px 20px
+    );
+}
+
+.gingham-strip {
+  height: 14px;
+  background-color: #faf3e3;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--tomato) 38%, transparent) 0 7px,
+      transparent 7px 14px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--tomato) 38%, transparent) 0 7px,
+      transparent 7px 14px
+    );
+}
+
+/* ---------- Scalloped edge ---------- */
+
+.scallop {
+  --scallop-c: var(--paper);
+  height: 20px;
+  background-image: radial-gradient(
+    circle at 10px -4px,
+    var(--scallop-c) 13px,
+    transparent 14px
+  );
+  background-size: 20px 20px;
+  background-repeat: repeat-x;
+}
+
+.scallop-flip {
+  transform: scaleY(-1);
 }
 
 /* ---------- Buttons ---------- */
@@ -121,10 +173,10 @@ a {
   justify-content: center;
   gap: 0.5rem;
   min-height: 3rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
+  border-radius: 0.9rem;
   border: 1px solid transparent;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
   transition:
@@ -143,32 +195,36 @@ a {
   transform: translateY(0);
 }
 
+/* Red button with embroidery stitch detail */
 .btn-primary {
-  background: var(--espresso);
-  color: var(--cream);
-  box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--espresso) 55%, transparent);
+  position: relative;
+  background: var(--tomato);
+  color: var(--paper);
+  outline: 2px dashed color-mix(in srgb, var(--paper) 65%, transparent);
+  outline-offset: -6px;
+  box-shadow: 0 12px 26px -12px color-mix(in srgb, var(--tomato-deep) 80%, transparent);
 }
 
 .btn-primary:hover {
-  background: var(--walnut);
+  background: var(--tomato-deep);
 }
 
 .btn-ghost {
-  background: color-mix(in srgb, var(--paper) 60%, transparent);
-  border-color: var(--line);
+  background: color-mix(in srgb, var(--paper) 70%, transparent);
+  border-color: color-mix(in srgb, var(--coffee) 35%, transparent);
   color: var(--coffee);
-  backdrop-filter: blur(6px);
 }
 
 .btn-ghost:hover {
   background: var(--paper);
-  border-color: color-mix(in srgb, var(--coffee) 30%, transparent);
 }
 
 .btn-cream {
   background: var(--cream);
   color: var(--espresso);
-  box-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.45);
+  outline: 2px dashed color-mix(in srgb, var(--espresso) 35%, transparent);
+  outline-offset: -6px;
+  box-shadow: 0 12px 26px -14px rgb(0 0 0 / 0.5);
 }
 
 .btn-cream:hover {
@@ -177,7 +233,7 @@ a {
 
 .btn-sm {
   min-height: 2.5rem;
-  padding: 0.5rem 1.1rem;
+  padding: 0.5rem 1.15rem;
   font-size: 0.9rem;
 }
 
@@ -186,23 +242,67 @@ a {
 .tile {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  box-shadow: 0 20px 40px -30px color-mix(in srgb, var(--espresso) 35%, transparent);
+  border-radius: 1rem;
+  box-shadow:
+    inset 0 0 0 4px var(--paper),
+    inset 0 0 0 5px color-mix(in srgb, var(--coffee) 22%, transparent),
+    0 18px 36px -28px color-mix(in srgb, var(--espresso) 45%, transparent);
 }
 
-.arch {
-  border-radius: 999px 999px 1.25rem 1.25rem;
+/* Framed photograph */
+.frame {
+  background: var(--paper);
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--coffee) 35%, transparent);
+  border-radius: 8px;
+  box-shadow:
+    0 24px 48px -24px color-mix(in srgb, var(--espresso) 55%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--coffee) 12%, transparent);
+}
+
+.frame-inner {
+  border: 1px solid color-mix(in srgb, var(--coffee) 30%, transparent);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Polaroid with tape */
+.polaroid {
+  position: relative;
+  background: var(--paper);
+  padding: 10px 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: 0 18px 36px -22px color-mix(in srgb, var(--espresso) 50%, transparent);
+}
+
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 26px;
+  transform: translateX(-50%) rotate(-2.5deg);
+  background: color-mix(in srgb, var(--caramel) 42%, transparent);
+  border-left: 1px dashed color-mix(in srgb, var(--coffee) 25%, transparent);
+  border-right: 1px dashed color-mix(in srgb, var(--coffee) 25%, transparent);
+  opacity: 0.85;
+}
+
+.polaroid-inner {
+  border-radius: 3px;
   overflow: hidden;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   padding: 0.45rem 1rem;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--coffee) 40%, transparent);
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--coffee);
@@ -210,28 +310,37 @@ a {
 
 .chip::before {
   content: "";
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 999px;
-  background: var(--terracotta);
+  background: var(--tomato);
 }
 
 .band-dark {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(800px 400px at 90% 0%, color-mix(in srgb, var(--caramel) 22%, transparent), transparent 60%),
-    linear-gradient(165deg, #38220f 0%, var(--espresso) 55%, var(--espresso-deep) 100%);
+    radial-gradient(800px 400px at 90% 0%, color-mix(in srgb, var(--caramel) 20%, transparent), transparent 60%),
+    linear-gradient(165deg, #4a3220 0%, var(--espresso) 55%, var(--espresso-deep) 100%);
   color: var(--cream);
 }
 
-.band-olive {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(700px 380px at 15% 10%, color-mix(in srgb, var(--sage) 40%, transparent), transparent 60%),
-    linear-gradient(160deg, #67754e 0%, var(--olive) 60%, #4c5a38 100%);
-  color: var(--cream);
+/* Hand-drawn-ish numbered circle */
+.step-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border: 2px solid var(--espresso);
+  border-radius: 47% 53% 52% 48% / 51% 49% 53% 47%;
+  transform: rotate(-3deg);
+  font-family: var(--font-display), serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--tomato);
+  background: var(--paper);
 }
 
 /* ---------- Marquee ---------- */
@@ -297,7 +406,7 @@ a {
 
 .field label {
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--coffee);
 }
 
@@ -305,9 +414,9 @@ a {
 .field select,
 .field textarea {
   width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, white 55%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--coffee) 30%, transparent);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, white 60%, var(--paper));
   color: var(--ink);
   padding: 0.8rem 0.95rem;
   font: inherit;
@@ -320,8 +429,8 @@ a {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: color-mix(in srgb, var(--caramel) 65%, var(--line));
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--caramel) 22%, transparent);
+  border-color: color-mix(in srgb, var(--tomato) 60%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tomato) 18%, transparent);
 }
 
 .field textarea {

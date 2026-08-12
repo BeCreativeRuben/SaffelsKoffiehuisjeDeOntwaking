@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { SteamCup, Squiggle } from "@/components/Ornaments";
+import { CakeSlice, CoffeePot, Heart, SteamCup, Squiggle } from "@/components/Ornaments";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -40,12 +40,11 @@ const features = [
 export default function DeZaalPage() {
   return (
     <>
-      <section className="site-shell py-16 sm:py-20">
+      <section className="site-shell py-14 sm:py-20">
         <Reveal>
           <p className="section-label">De zaal</p>
-          <h1 className="display mt-4 max-w-3xl text-5xl text-espresso sm:text-6xl">
-            Huiselijk,{" "}
-            <span className="display-italic text-walnut">niet chique</span>.
+          <h1 className="display mt-3 max-w-3xl text-5xl text-espresso sm:text-6xl">
+            Huiselijk, <span className="script text-tomato">niet chique</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
             {site.description} Comfortabel voor zo’n {site.capacity} personen —
@@ -53,45 +52,62 @@ export default function DeZaalPage() {
           </p>
         </Reveal>
 
-        {/* Arch mosaic */}
-        <div className="mt-14 grid grid-cols-2 items-end gap-4 sm:grid-cols-[1fr_1.5fr_1fr] sm:gap-5">
+        {/* Framed photo wall */}
+        <div className="mt-16 grid grid-cols-2 items-center gap-6 sm:grid-cols-[1fr_1.5fr_1fr] sm:gap-8">
           <Reveal>
-            <div
-              className="arch aspect-[3/4] border border-line"
-              style={{
-                background:
-                  "radial-gradient(110% 90% at 40% 15%, #a8b18e 0%, #7d8a63 55%, #556340 100%)",
-              }}
-            />
-          </Reveal>
-          <Reveal delay={120}>
-            <div
-              className="arch flex aspect-[4/4.4] items-end justify-center border border-line p-6 shadow-[0_30px_60px_-30px_rgba(42,26,15,0.5)]"
-              style={{
-                background:
-                  "radial-gradient(120% 100% at 50% 0%, #58381d 0%, #3b2412 60%, #2a1a0f 100%)",
-              }}
-            >
-              <p className="pb-2 text-center text-sm leading-relaxed text-cream/75">
-                Foto’s van de zaal volgen — warme tinten, een gedekte tafel en
-                plaats voor iedereen.
+            <div className="polaroid -rotate-3">
+              <div
+                className="polaroid-inner flex aspect-[4/5] items-center justify-center"
+                style={{
+                  background:
+                    "radial-gradient(110% 90% at 40% 15%, #b9c2a2 0%, #8a9a72 55%, #6d7d57 100%)",
+                }}
+              >
+                <CakeSlice className="h-14 w-14 text-cream/90" />
+              </div>
+              <p className="script pt-2.5 text-center text-xl text-coffee">
+                vers gebak
               </p>
             </div>
           </Reveal>
+          <Reveal delay={120}>
+            <div className="frame rotate-1">
+              <div
+                className="frame-inner flex aspect-[4/3.4] flex-col items-center justify-center gap-4 p-6 text-center"
+                style={{
+                  background:
+                    "radial-gradient(120% 100% at 50% 0%, #6d5138 0%, #4a3220 60%, #38261a 100%)",
+                }}
+              >
+                <SteamCup className="h-20 w-20 text-caramel" />
+                <p className="text-sm leading-relaxed text-cream/75">
+                  Foto’s van de zaal volgen — warme tinten, een gedekte tafel
+                  en plaats voor iedereen.
+                </p>
+              </div>
+            </div>
+          </Reveal>
           <Reveal delay={240}>
-            <div
-              className="arch aspect-[3/4] border border-line"
-              style={{
-                background:
-                  "radial-gradient(110% 90% at 60% 20%, #d9b06f 0%, #b98a4e 55%, #8f6132 100%)",
-              }}
-            />
+            <div className="polaroid rotate-2">
+              <div
+                className="polaroid-inner flex aspect-[4/5] items-center justify-center"
+                style={{
+                  background:
+                    "radial-gradient(110% 90% at 60% 20%, #d9b06f 0%, #b98a4e 55%, #96692f 100%)",
+                }}
+              >
+                <CoffeePot className="h-14 w-14 text-cream/90" />
+              </div>
+              <p className="script pt-2.5 text-center text-xl text-coffee">
+                koffie met een verhaal
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* Occasions */}
-      <section className="border-y border-line/70 bg-paper/50">
+      <section className="border-y border-line/70 bg-paper/60">
         <div className="site-shell py-14">
           <Reveal>
             <h2 className="display text-3xl text-espresso sm:text-4xl">
@@ -104,9 +120,10 @@ export default function DeZaalPage() {
                 </span>
               ))}
             </div>
-            <p className="mt-6 max-w-xl leading-relaxed text-ink-soft">
+            <p className="mt-6 flex max-w-xl items-center gap-2 leading-relaxed text-ink-soft">
               Geen strakke eventzaal — wel een plek waar mensen zich meteen
               thuis voelen en mooie herinneringen maken.
+              <Heart className="h-4 w-4 shrink-0 text-tomato" />
             </p>
           </Reveal>
         </div>
@@ -131,7 +148,7 @@ export default function DeZaalPage() {
       {/* Praktisch + CTA */}
       <section className="site-shell pb-4">
         <Reveal>
-          <div className="band-dark rounded-[2rem] px-7 py-14 sm:px-12 sm:py-16">
+          <div className="band-dark rounded-[1.5rem] px-7 py-14 sm:px-12 sm:py-16">
             <div className="grid items-center gap-10 md:grid-cols-[1.2fr_0.8fr]">
               <div>
                 <Squiggle className="h-3 w-32 text-caramel" />

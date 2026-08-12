@@ -10,12 +10,11 @@ export const metadata: Metadata = {
 export default function BedanktPage() {
   return (
     <div className="site-shell flex min-h-[65svh] items-center py-16">
-      <div className="grid w-full items-center gap-10 md:grid-cols-[1.2fr_0.8fr]">
+      <div className="grid w-full items-center gap-12 md:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <p className="section-label">Bedankt</p>
-          <h1 className="display mt-4 text-5xl text-espresso sm:text-6xl">
-            Aanvraag{" "}
-            <span className="display-italic text-walnut">ontvangen</span>
+          <p className="section-label">Bedankt!</p>
+          <h1 className="display mt-3 text-5xl text-espresso sm:text-6xl">
+            Aanvraag <span className="script text-tomato">ontvangen</span>
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft">
             We hebben je aanvraag goed ontvangen en checken de agenda. Je hoort
@@ -30,19 +29,22 @@ export default function BedanktPage() {
               Meer over de zaal
             </Link>
           </div>
-          <p className="mt-10 text-sm font-semibold uppercase tracking-[0.16em] text-olive">
-            {site.name}
-          </p>
+          <p className="script mt-10 text-2xl text-walnut">{site.name}</p>
         </div>
         <div className="hidden justify-center md:flex">
-          <div
-            className="arch flex aspect-[3/4] w-full max-w-xs items-center justify-center border border-line"
-            style={{
-              background:
-                "radial-gradient(120% 90% at 50% 0%, #58381d 0%, #3b2412 55%, #2a1a0f 100%)",
-            }}
-          >
-            <SteamCup className="h-28 w-28 text-caramel" />
+          <div className="polaroid w-full max-w-xs rotate-2">
+            <div
+              className="polaroid-inner flex aspect-[4/5] items-center justify-center"
+              style={{
+                background:
+                  "radial-gradient(120% 100% at 50% 0%, #6d5138 0%, #4a3220 55%, #38261a 100%)",
+              }}
+            >
+              <SteamCup className="h-24 w-24 text-caramel" />
+            </div>
+            <p className="script pt-2.5 text-center text-xl text-coffee">
+              tot binnenkort!
+            </p>
           </div>
         </div>
       </div>

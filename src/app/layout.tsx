@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Karla } from "next/font/google";
+import { Fraunces, Karla, Caveat } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
@@ -17,6 +17,12 @@ const karla = Karla({
   display: "swap",
 });
 
+const caveat = Caveat({
+  variable: "--font-script",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: site.name,
@@ -27,8 +33,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="nl" className={`${fraunces.variable} ${karla.variable} h-full`}>
+    <html
+      lang="nl"
+      className={`${fraunces.variable} ${karla.variable} ${caveat.variable} h-full`}
+    >
       <body className="min-h-full flex flex-col antialiased">
+        <div aria-hidden className="gingham-strip" />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
