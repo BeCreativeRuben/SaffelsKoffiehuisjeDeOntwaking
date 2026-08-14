@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Squiggle } from "@/components/Ornaments";
 
 export const metadata: Metadata = {
   title: "Bevestiging",
@@ -50,10 +49,9 @@ export default async function BevestigingPage({
     <div className="site-shell flex min-h-[60svh] items-center py-16">
       <div className="max-w-xl">
         <p className="section-label">Beheer</p>
-        <h1 className="display mt-3 text-5xl text-espresso sm:text-6xl">
+        <h1 className="display mt-4 text-5xl text-espresso sm:text-6xl">
           {title}
         </h1>
-        <Squiggle className="mt-6 h-3 w-32 text-tomato/70" />
         <p className="mt-6 text-lg leading-relaxed text-ink-soft">{body}</p>
         <Link href="/" className="btn btn-primary mt-9">
           Naar de website

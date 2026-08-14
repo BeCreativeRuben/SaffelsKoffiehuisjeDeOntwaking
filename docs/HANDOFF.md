@@ -34,8 +34,9 @@ Copy `.env.example` → `.env.local` (local) and set the same vars in the Vercel
 | `FROM_EMAIL` | Sender (verify domain in Resend for production) |
 | `OWNER_EMAIL` | Where approve/decline mails go |
 | `NEXT_PUBLIC_SITE_URL` | `https://saffels-koffiehuisje.vercel.app` (or custom domain later) |
-| `NEXT_PUBLIC_PHONE` | Optional phone on contact page |
-| `NEXT_PUBLIC_ADDRESS` | Optional address on contact page |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Optional public contact e-mail (preferred over OWNER_EMAIL for display) |
+| `NEXT_PUBLIC_PHONE` | Optional phone on contact page — only shown when set |
+| `NEXT_PUBLIC_ADDRESS` | Optional address — only shown when set (do not invent; Persijzerstraat only after confirmed in env) |
 
 Optional: run `db/schema.sql` in the Neon SQL editor (the app also creates the table on first request).
 
@@ -47,8 +48,8 @@ Optional: run `db/schema.sql` in the Neon SQL editor (the app also creates the t
 - [ ] Resend key set; send a test booking to yourself
 - [ ] Approve link works → guest “bevestiging” mail
 - [ ] Decline link works → guest “niet bevestigd” mail
-- [ ] Replace placeholder copy/address/phone with real client details
-- [ ] Add real photos of the zaal on Home / De zaal
+- [ ] Set NEXT_PUBLIC_* contact env when client confirms details
+- [x] Temporary zaal photos (Lochristinaar hero + sfeercrops) — swap Higgsfield stills in `src/lib/media.ts` when ready
 - [ ] Point custom domain when ready
 - [ ] Walk through one real request with the client
 

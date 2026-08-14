@@ -52,7 +52,7 @@ export function RequestForm() {
           <label htmlFor="name">Naam</label>
           <input id="name" name="name" autoComplete="name" required />
           {fieldErrors.name?.[0] ? (
-            <p className="text-sm text-walnut">{fieldErrors.name[0]}</p>
+            <p className="text-sm text-accent">{fieldErrors.name[0]}</p>
           ) : null}
         </div>
         <div className="field">
@@ -65,7 +65,7 @@ export function RequestForm() {
             required
           />
           {fieldErrors.email?.[0] ? (
-            <p className="text-sm text-walnut">{fieldErrors.email[0]}</p>
+            <p className="text-sm text-accent">{fieldErrors.email[0]}</p>
           ) : null}
         </div>
       </div>
@@ -75,7 +75,7 @@ export function RequestForm() {
           <label htmlFor="phone">Telefoon</label>
           <input id="phone" name="phone" type="tel" autoComplete="tel" required />
           {fieldErrors.phone?.[0] ? (
-            <p className="text-sm text-walnut">{fieldErrors.phone[0]}</p>
+            <p className="text-sm text-accent">{fieldErrors.phone[0]}</p>
           ) : null}
         </div>
         <div className="field">
@@ -90,7 +90,7 @@ export function RequestForm() {
             required
           />
           {fieldErrors.guests?.[0] ? (
-            <p className="text-sm text-walnut">{fieldErrors.guests[0]}</p>
+            <p className="text-sm text-accent">{fieldErrors.guests[0]}</p>
           ) : null}
         </div>
       </div>
@@ -100,7 +100,7 @@ export function RequestForm() {
           <label htmlFor="date">Gewenste datum</label>
           <input id="date" name="date" type="date" required />
           {fieldErrors.date?.[0] ? (
-            <p className="text-sm text-walnut">{fieldErrors.date[0]}</p>
+            <p className="text-sm text-accent">{fieldErrors.date[0]}</p>
           ) : null}
         </div>
         <div className="field">
@@ -113,7 +113,7 @@ export function RequestForm() {
             required
           />
           {fieldErrors.time?.[0] ? (
-            <p className="text-sm text-walnut">{fieldErrors.time[0]}</p>
+            <p className="text-sm text-accent">{fieldErrors.time[0]}</p>
           ) : null}
         </div>
       </div>
@@ -127,7 +127,7 @@ export function RequestForm() {
           required
         />
         {fieldErrors.occasion?.[0] ? (
-          <p className="text-sm text-walnut">{fieldErrors.occasion[0]}</p>
+          <p className="text-sm text-accent">{fieldErrors.occasion[0]}</p>
         ) : null}
       </div>
 
@@ -147,7 +147,7 @@ export function RequestForm() {
       </p>
 
       {formError ? (
-        <p className="rounded-xl border border-walnut/30 bg-paper/70 px-4 py-3 text-sm text-walnut">
+        <p className="rounded-xl border border-wood/30 bg-paper/70 px-4 py-3 text-sm text-accent">
           {formError}
         </p>
       ) : null}

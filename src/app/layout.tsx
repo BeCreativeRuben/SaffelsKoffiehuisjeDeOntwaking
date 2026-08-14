@@ -38,7 +38,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${karla.variable} ${caveat.variable} h-full`}
     >
       <body className="min-h-full flex flex-col antialiased">
-        <div aria-hidden className="gingham-strip" />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

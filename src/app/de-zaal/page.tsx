@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { CakeSlice, CoffeePot, Heart, SteamCup, Squiggle } from "@/components/Ornaments";
+import { photos } from "@/lib/media";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ const features = [
   },
   {
     title: "Huiselijke sfeer",
-    text: "Warme tinten, gezellige hoekjes en een tafel waar plaats is voor iedereen. Als thuis, maar dan met bediening.",
+    text: "Olijfgroene muren, houten tafels en een zithoek. Als thuis, maar dan met bediening.",
   },
   {
     title: "Familiaal onthaal",
@@ -40,11 +41,12 @@ const features = [
 export default function DeZaalPage() {
   return (
     <>
-      <section className="site-shell py-14 sm:py-20">
+      <section className="site-shell py-16 sm:py-20">
         <Reveal>
           <p className="section-label">De zaal</p>
-          <h1 className="display mt-3 max-w-3xl text-5xl text-espresso sm:text-6xl">
-            Huiselijk, <span className="script text-tomato">niet chique</span>
+          <h1 className="display mt-4 max-w-3xl text-5xl text-espresso sm:text-6xl">
+            Huiselijk,{" "}
+            <span className="display-italic text-olive">niet chique</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
             {site.description} Comfortabel voor zo’n {site.capacity} personen —
@@ -52,63 +54,52 @@ export default function DeZaalPage() {
           </p>
         </Reveal>
 
-        {/* Framed photo wall */}
-        <div className="mt-16 grid grid-cols-2 items-center gap-6 sm:grid-cols-[1fr_1.5fr_1fr] sm:gap-8">
+        <div className="mt-14 grid items-end gap-4 sm:grid-cols-[1fr_1.35fr_1fr]">
           <Reveal>
-            <div className="polaroid -rotate-3">
-              <div
-                className="polaroid-inner flex aspect-[4/5] items-center justify-center"
-                style={{
-                  background:
-                    "radial-gradient(110% 90% at 40% 15%, #b9c2a2 0%, #8a9a72 55%, #6d7d57 100%)",
-                }}
-              >
-                <CakeSlice className="h-14 w-14 text-cream/90" />
-              </div>
-              <p className="script pt-2.5 text-center text-xl text-coffee">
-                vers gebak
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <div className="frame rotate-1">
-              <div
-                className="frame-inner flex aspect-[4/3.4] flex-col items-center justify-center gap-4 p-6 text-center"
-                style={{
-                  background:
-                    "radial-gradient(120% 100% at 50% 0%, #6d5138 0%, #4a3220 60%, #38261a 100%)",
-                }}
-              >
-                <SteamCup className="h-20 w-20 text-caramel" />
-                <p className="text-sm leading-relaxed text-cream/75">
-                  Foto’s van de zaal volgen — warme tinten, een gedekte tafel
-                  en plaats voor iedereen.
-                </p>
+            <div className="photo-frame">
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={photos.tafel.src}
+                  alt={photos.tafel.alt}
+                  fill
+                  sizes="30vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </Reveal>
-          <Reveal delay={240}>
-            <div className="polaroid rotate-2">
-              <div
-                className="polaroid-inner flex aspect-[4/5] items-center justify-center"
-                style={{
-                  background:
-                    "radial-gradient(110% 90% at 60% 20%, #d9b06f 0%, #b98a4e 55%, #96692f 100%)",
-                }}
-              >
-                <CoffeePot className="h-14 w-14 text-cream/90" />
+          <Reveal delay={100}>
+            <div className="photo-frame">
+              <div className="relative aspect-[4/3.6]">
+                <Image
+                  src={photos.overzicht.src}
+                  alt={photos.overzicht.alt}
+                  fill
+                  sizes="40vw"
+                  priority
+                  className="object-cover"
+                />
               </div>
-              <p className="script pt-2.5 text-center text-xl text-coffee">
-                koffie met een verhaal
-              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="photo-frame">
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={photos.zithoek.src}
+                  alt={photos.zithoek.alt}
+                  fill
+                  sizes="30vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Occasions */}
-      <section className="border-y border-line/70 bg-paper/60">
-        <div className="site-shell py-14">
+      <section className="border-y border-line/80 bg-paper/60">
+        <div className="site-shell py-16">
           <Reveal>
             <h2 className="display text-3xl text-espresso sm:text-4xl">
               Wat hier past
@@ -120,22 +111,20 @@ export default function DeZaalPage() {
                 </span>
               ))}
             </div>
-            <p className="mt-6 flex max-w-xl items-center gap-2 leading-relaxed text-ink-soft">
+            <p className="mt-6 max-w-xl leading-relaxed text-ink-soft">
               Geen strakke eventzaal — wel een plek waar mensen zich meteen
               thuis voelen en mooie herinneringen maken.
-              <Heart className="h-4 w-4 shrink-0 text-tomato" />
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="site-shell py-20 sm:py-24">
+      <section className="site-shell py-24">
         <div className="grid gap-5 sm:grid-cols-2">
           {features.map((feature, i) => (
-            <Reveal key={feature.title} delay={(i % 2) * 120}>
-              <div className="tile h-full p-7">
-                <h3 className="display text-2xl text-coffee">{feature.title}</h3>
+            <Reveal key={feature.title} delay={(i % 2) * 100}>
+              <div className="tile h-full p-8">
+                <h3 className="display text-2xl text-wood">{feature.title}</h3>
                 <p className="mt-3 leading-relaxed text-ink-soft">
                   {feature.text}
                 </p>
@@ -145,15 +134,14 @@ export default function DeZaalPage() {
         </div>
       </section>
 
-      {/* Praktisch + CTA */}
-      <section className="site-shell pb-4">
+      <section className="site-shell pb-8">
         <Reveal>
-          <div className="band-dark rounded-[1.5rem] px-7 py-14 sm:px-12 sm:py-16">
-            <div className="grid items-center gap-10 md:grid-cols-[1.2fr_0.8fr]">
-              <div>
-                <Squiggle className="h-3 w-32 text-caramel" />
-                <h2 className="display mt-6 text-4xl text-cream sm:text-5xl">
-                  Praktisch
+          <div className="band-olive overflow-hidden rounded-[1.75rem]">
+            <div className="grid items-center md:grid-cols-[1.15fr_0.85fr]">
+              <div className="px-8 py-14 sm:px-12 sm:py-16">
+                <p className="section-label !text-caramel">Praktisch</p>
+                <h2 className="display mt-4 text-4xl text-cream sm:text-5xl">
+                  Vraag je datum aan
                 </h2>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/85">
                   Stuur een aanvraag met je gewenste datum en aantal personen.
@@ -165,8 +153,14 @@ export default function DeZaalPage() {
                   Zaal aanvragen
                 </Link>
               </div>
-              <div className="hidden justify-center md:flex">
-                <SteamCup className="h-40 w-40 text-caramel" />
+              <div className="relative hidden min-h-[320px] md:block">
+                <Image
+                  src={photos.servies.src}
+                  alt={photos.servies.alt}
+                  fill
+                  sizes="40vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>

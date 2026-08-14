@@ -1,39 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f6eeda;
-  --cream-deep: #efe3c8;
-  --paper: #fdf8ec;
-  --espresso: #3a2718;
-  --espresso-deep: #2b1c10;
-  --coffee: #503522;
-  --walnut: #7a5638;
-  --caramel: #c08a4e;
-  --tomato: #b23a2d;
-  --tomato-deep: #8f2c21;
-  --terracotta: #b23a2d;
-  --olive: #64744b;
-  --sage: #8a9a72;
-  --ink: #33261a;
-  --ink-soft: #6e5d49;
-  --line: color-mix(in srgb, var(--coffee) 18%, transparent);
+  --cream: #f3eee4;
+  --cream-deep: #e8e0d2;
+  --paper: #faf7f1;
+  --olive: #4f5d3a;
+  --olive-deep: #3c472c;
+  --olive-soft: #7a8a62;
+  --wood: #5c4030;
+  --wood-deep: #3a281c;
+  --espresso: #2c1d14;
+  --ink: #231910;
+  --ink-soft: #5c5146;
+  --line: color-mix(in srgb, var(--wood) 16%, transparent);
+  --accent: #b33a2c;
+  --accent-deep: #8f2c21;
+  --caramel: #b88955;
 }
 
 @theme inline {
   --color-cream: var(--cream);
   --color-cream-deep: var(--cream-deep);
   --color-paper: var(--paper);
-  --color-espresso: var(--espresso);
-  --color-coffee: var(--coffee);
-  --color-walnut: var(--walnut);
-  --color-caramel: var(--caramel);
-  --color-tomato: var(--tomato);
-  --color-terracotta: var(--terracotta);
   --color-olive: var(--olive);
-  --color-sage: var(--sage);
+  --color-olive-deep: var(--olive-deep);
+  --color-olive-soft: var(--olive-soft);
+  --color-wood: var(--wood);
+  --color-wood-deep: var(--wood-deep);
+  --color-espresso: var(--espresso);
+  --color-coffee: var(--wood);
+  --color-walnut: var(--wood);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-tomato: var(--accent);
+  --color-terracotta: var(--accent);
+  --color-caramel: var(--caramel);
+  --color-sage: var(--olive-soft);
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
   --font-script: var(--font-script);
@@ -51,22 +55,8 @@ body {
   margin: 0;
   min-height: 100%;
   color: var(--ink);
-  background:
-    radial-gradient(900px 500px at 90% -5%, color-mix(in srgb, var(--caramel) 10%, transparent), transparent 60%),
-    linear-gradient(175deg, var(--cream) 0%, var(--cream-deep) 100%);
+  background: var(--cream);
   font-family: var(--font-body), system-ui, sans-serif;
-}
-
-/* Old-paper grain, purely decorative */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 a {
@@ -75,12 +65,12 @@ a {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tomato) 25%, white);
+  background: color-mix(in srgb, var(--olive) 28%, white);
   color: var(--espresso);
 }
 
 .site-shell {
-  width: min(1120px, calc(100% - 2.5rem));
+  width: min(1180px, calc(100% - 2.5rem));
   margin-inline: auto;
 }
 
@@ -89,14 +79,15 @@ a {
 .display {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.04;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
 }
 
 .display-italic {
   font-family: var(--font-display), Georgia, serif;
   font-style: italic;
   font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 .script {
@@ -107,62 +98,46 @@ a {
 
 .section-label {
   display: inline-block;
-  font-family: var(--font-script), cursive;
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 1.1;
-  color: var(--tomato);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--olive);
 }
 
-/* ---------- Gingham (grandma's tablecloth) ---------- */
+/* ---------- Sticky nav ---------- */
 
-.gingham {
-  background-color: #faf3e3;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      color-mix(in srgb, var(--tomato) 32%, transparent) 0 10px,
-      transparent 10px 20px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--tomato) 32%, transparent) 0 10px,
-      transparent 10px 20px
-    );
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  background: color-mix(in srgb, var(--cream) 72%, transparent);
+  backdrop-filter: blur(14px);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    padding 220ms ease;
 }
 
-.gingham-strip {
-  height: 14px;
-  background-color: #faf3e3;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      color-mix(in srgb, var(--tomato) 38%, transparent) 0 7px,
-      transparent 7px 14px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--tomato) 38%, transparent) 0 7px,
-      transparent 7px 14px
-    );
+.site-header.is-scrolled {
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  border-bottom-color: var(--line);
+  box-shadow: 0 12px 40px -28px color-mix(in srgb, var(--espresso) 55%, transparent);
 }
 
-/* ---------- Scalloped edge ---------- */
-
-.scallop {
-  --scallop-c: var(--paper);
-  height: 20px;
-  background-image: radial-gradient(
-    circle at 10px -4px,
-    var(--scallop-c) 13px,
-    transparent 14px
-  );
-  background-size: 20px 20px;
-  background-repeat: repeat-x;
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.05rem;
+  transition: padding 220ms ease;
 }
 
-.scallop-flip {
-  transform: scaleY(-1);
+.site-header.is-scrolled .site-header-inner {
+  padding-block: 0.7rem;
 }
 
 /* ---------- Buttons ---------- */
@@ -172,11 +147,11 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 3rem;
-  padding: 0.75rem 1.6rem;
-  border-radius: 0.9rem;
+  min-height: 3.1rem;
+  padding: 0.8rem 1.55rem;
+  border-radius: 999px;
   border: 1px solid transparent;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
   cursor: pointer;
   transition:
@@ -188,52 +163,57 @@ a {
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn:active {
   transform: translateY(0);
 }
 
-/* Red button with embroidery stitch detail */
 .btn-primary {
-  position: relative;
-  background: var(--tomato);
+  background: var(--accent);
   color: var(--paper);
-  outline: 2px dashed color-mix(in srgb, var(--paper) 65%, transparent);
-  outline-offset: -6px;
-  box-shadow: 0 12px 26px -12px color-mix(in srgb, var(--tomato-deep) 80%, transparent);
+  box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--accent-deep) 70%, transparent);
 }
 
 .btn-primary:hover {
-  background: var(--tomato-deep);
+  background: var(--accent-deep);
 }
 
 .btn-ghost {
-  background: color-mix(in srgb, var(--paper) 70%, transparent);
-  border-color: color-mix(in srgb, var(--coffee) 35%, transparent);
-  color: var(--coffee);
+  background: transparent;
+  border-color: color-mix(in srgb, var(--wood) 28%, transparent);
+  color: var(--wood-deep);
 }
 
 .btn-ghost:hover {
   background: var(--paper);
+  border-color: var(--wood);
 }
 
 .btn-cream {
   background: var(--cream);
   color: var(--espresso);
-  outline: 2px dashed color-mix(in srgb, var(--espresso) 35%, transparent);
-  outline-offset: -6px;
-  box-shadow: 0 12px 26px -14px rgb(0 0 0 / 0.5);
+  box-shadow: 0 14px 28px -16px rgb(0 0 0 / 0.45);
 }
 
 .btn-cream:hover {
   background: var(--paper);
 }
 
+.btn-olive {
+  background: var(--olive);
+  color: var(--cream);
+  box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--olive-deep) 70%, transparent);
+}
+
+.btn-olive:hover {
+  background: var(--olive-deep);
+}
+
 .btn-sm {
-  min-height: 2.5rem;
-  padding: 0.5rem 1.15rem;
+  min-height: 2.55rem;
+  padding: 0.55rem 1.15rem;
   font-size: 0.9rem;
 }
 
@@ -242,105 +222,73 @@ a {
 .tile {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 1rem;
-  box-shadow:
-    inset 0 0 0 4px var(--paper),
-    inset 0 0 0 5px color-mix(in srgb, var(--coffee) 22%, transparent),
-    0 18px 36px -28px color-mix(in srgb, var(--espresso) 45%, transparent);
-}
-
-/* Framed photograph */
-.frame {
-  background: var(--paper);
-  padding: 12px;
-  border: 1px solid color-mix(in srgb, var(--coffee) 35%, transparent);
-  border-radius: 8px;
-  box-shadow:
-    0 24px 48px -24px color-mix(in srgb, var(--espresso) 55%, transparent),
-    inset 0 0 0 1px color-mix(in srgb, var(--coffee) 12%, transparent);
-}
-
-.frame-inner {
-  border: 1px solid color-mix(in srgb, var(--coffee) 30%, transparent);
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-/* Polaroid with tape */
-.polaroid {
-  position: relative;
-  background: var(--paper);
-  padding: 10px 10px 14px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  box-shadow: 0 18px 36px -22px color-mix(in srgb, var(--espresso) 50%, transparent);
-}
-
-.polaroid::before {
-  content: "";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  width: 92px;
-  height: 26px;
-  transform: translateX(-50%) rotate(-2.5deg);
-  background: color-mix(in srgb, var(--caramel) 42%, transparent);
-  border-left: 1px dashed color-mix(in srgb, var(--coffee) 25%, transparent);
-  border-right: 1px dashed color-mix(in srgb, var(--coffee) 25%, transparent);
-  opacity: 0.85;
-}
-
-.polaroid-inner {
-  border-radius: 3px;
-  overflow: hidden;
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 48px -36px color-mix(in srgb, var(--espresso) 40%, transparent);
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1rem;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
   border-radius: 999px;
-  border: 1px dashed color-mix(in srgb, var(--coffee) 40%, transparent);
-  background: color-mix(in srgb, var(--paper) 85%, transparent);
-  font-size: 0.9rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  font-size: 0.86rem;
   font-weight: 600;
-  color: var(--coffee);
+  color: var(--wood);
 }
 
 .chip::before {
   content: "";
-  width: 0.45rem;
-  height: 0.45rem;
+  width: 0.35rem;
+  height: 0.35rem;
   border-radius: 999px;
-  background: var(--tomato);
+  background: var(--accent);
 }
 
-.band-dark {
-  position: relative;
-  overflow: hidden;
+.band-olive {
   background:
-    radial-gradient(800px 400px at 90% 0%, color-mix(in srgb, var(--caramel) 20%, transparent), transparent 60%),
-    linear-gradient(165deg, #4a3220 0%, var(--espresso) 55%, var(--espresso-deep) 100%);
+    radial-gradient(900px 420px at 90% 0%, color-mix(in srgb, var(--olive-soft) 28%, transparent), transparent 55%),
+    linear-gradient(160deg, var(--olive) 0%, var(--olive-deep) 100%);
   color: var(--cream);
 }
 
-/* Hand-drawn-ish numbered circle */
+.band-wood {
+  background:
+    radial-gradient(800px 400px at 10% 0%, color-mix(in srgb, var(--caramel) 18%, transparent), transparent 55%),
+    linear-gradient(165deg, #4a3424 0%, var(--wood-deep) 100%);
+  color: var(--cream);
+}
+
+.photo-frame {
+  overflow: hidden;
+  border-radius: 1.35rem;
+  border: 1px solid var(--line);
+  background: var(--wood-deep);
+  box-shadow: 0 30px 60px -36px color-mix(in srgb, var(--espresso) 55%, transparent);
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .step-circle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.6rem;
+  height: 2.6rem;
   flex-shrink: 0;
-  border: 2px solid var(--espresso);
-  border-radius: 47% 53% 52% 48% / 51% 49% 53% 47%;
-  transform: rotate(-3deg);
+  border-radius: 999px;
+  background: var(--olive);
+  color: var(--cream);
   font-family: var(--font-display), serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--tomato);
-  background: var(--paper);
 }
 
 /* ---------- Marquee ---------- */
@@ -354,7 +302,7 @@ a {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 36s linear infinite;
+  animation: marquee 38s linear infinite;
 }
 
 .marquee:hover .marquee-track {
@@ -364,35 +312,6 @@ a {
 @keyframes marquee {
   to {
     transform: translateX(-50%);
-  }
-}
-
-/* ---------- Steam ---------- */
-
-.steam path {
-  opacity: 0;
-  animation: steam-rise 2.8s ease-in-out infinite;
-}
-
-.steam path:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.steam path:nth-child(3) {
-  animation-delay: 1s;
-}
-
-@keyframes steam-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  40% {
-    opacity: 0.85;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-7px);
   }
 }
 
@@ -407,18 +326,18 @@ a {
 .field label {
   font-size: 0.92rem;
   font-weight: 700;
-  color: var(--coffee);
+  color: var(--wood);
 }
 
 .field input,
 .field select,
 .field textarea {
   width: 100%;
-  border: 1px solid color-mix(in srgb, var(--coffee) 30%, transparent);
-  border-radius: 0.7rem;
-  background: color-mix(in srgb, white 60%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--wood) 24%, transparent);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, white 55%, var(--paper));
   color: var(--ink);
-  padding: 0.8rem 0.95rem;
+  padding: 0.85rem 1rem;
   font: inherit;
   outline: none;
   transition:
@@ -429,8 +348,8 @@ a {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: color-mix(in srgb, var(--tomato) 60%, transparent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tomato) 18%, transparent);
+  border-color: color-mix(in srgb, var(--olive) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--olive) 18%, transparent);
 }
 
 .field textarea {
@@ -441,25 +360,25 @@ a {
 /* ---------- Motion ---------- */
 
 .fade-up {
-  animation: fade-up 700ms ease both;
+  animation: fade-up 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .fade-up-delay {
-  animation: fade-up 900ms 120ms ease both;
+  animation: fade-up 900ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .fade-up-delay-2 {
-  animation: fade-up 900ms 240ms ease both;
+  animation: fade-up 900ms 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .fade-up-delay-3 {
-  animation: fade-up 900ms 360ms ease both;
+  animation: fade-up 900ms 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -469,10 +388,10 @@ a {
 
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(28px);
   transition:
-    opacity 700ms ease,
-    transform 700ms ease;
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.is-visible {
@@ -480,11 +399,25 @@ a {
   transform: none;
 }
 
+.hero-ken-burns {
+  animation: ken-burns 18s ease-out both;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fade-up,
   .fade-up-delay,
   .fade-up-delay-2,
-  .fade-up-delay-3 {
+  .fade-up-delay-3,
+  .hero-ken-burns {
     animation: none;
   }
 
@@ -496,11 +429,6 @@ a {
 
   .marquee-track {
     animation: none;
-  }
-
-  .steam path {
-    animation: none;
-    opacity: 0.6;
   }
 
   .btn,
