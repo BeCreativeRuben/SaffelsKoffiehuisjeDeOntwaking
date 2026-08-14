@@ -46,8 +46,8 @@ export function RequestForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-5" noValidate>
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="grid gap-6" noValidate>
+      <div className="grid gap-6 sm:grid-cols-2">
         <div className="field">
           <label htmlFor="name">Naam</label>
           <input id="name" name="name" autoComplete="name" required />
@@ -70,7 +70,7 @@ export function RequestForm() {
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2">
         <div className="field">
           <label htmlFor="phone">Telefoon</label>
           <input id="phone" name="phone" type="tel" autoComplete="tel" required />
@@ -95,7 +95,7 @@ export function RequestForm() {
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2">
         <div className="field">
           <label htmlFor="date">Gewenste datum</label>
           <input id="date" name="date" type="date" required />
@@ -147,12 +147,16 @@ export function RequestForm() {
       </p>
 
       {formError ? (
-        <p className="rounded-xl border border-wood/30 bg-paper/70 px-4 py-3 text-sm text-accent">
+        <div className="rounded-xl border border-accent/20 bg-accent/5 px-5 py-3.5 text-sm text-accent">
           {formError}
-        </p>
+        </div>
       ) : null}
 
-      <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={pending}>
+      <button
+        type="submit"
+        className="btn btn-primary w-full sm:w-auto"
+        disabled={pending}
+      >
         {pending ? "Even geduld…" : "Aanvraag versturen"}
       </button>
     </form>

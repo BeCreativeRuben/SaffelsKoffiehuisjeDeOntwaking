@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "De zaal",
-  description: `Het zaaltje van ${site.name}: huiselijk, familiaal en comfortabel voor zo’n ${site.capacity} personen.`,
+  description: `Het zaaltje van ${site.name}: huiselijk, familiaal en comfortabel voor zo'n ${site.capacity} personen.`,
 };
 
 const occasions = [
@@ -22,7 +22,7 @@ const occasions = [
 const features = [
   {
     title: `±${site.capacity} personen`,
-    text: "Comfortabel zitten voor zo’n 35 gasten. Kleinschalig genoeg om iedereen bij het gesprek te houden.",
+    text: "Comfortabel zitten voor zo'n 35 gasten. Kleinschalig genoeg om iedereen bij het gesprek te houden.",
   },
   {
     title: "Eerlijke keuken",
@@ -41,20 +41,23 @@ const features = [
 export default function DeZaalPage() {
   return (
     <>
-      <section className="site-shell py-16 sm:py-20">
+      {/* Hero section with offset heading */}
+      <section className="site-shell py-20 sm:py-24">
         <Reveal>
           <p className="section-label">De zaal</p>
-          <h1 className="display mt-4 max-w-3xl text-5xl text-espresso sm:text-6xl">
+          <hr className="section-rule mt-4" />
+          <h1 className="display mt-6 max-w-3xl text-5xl text-espresso sm:text-6xl lg:text-7xl">
             Huiselijk,{" "}
             <span className="display-italic text-olive">niet chique</span>.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
-            {site.description} Comfortabel voor zo’n {site.capacity} personen —
-            kleinschalig genoeg om het gezellig te houden.
+          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed">
+            {site.description} Comfortabel voor zo&apos;n {site.capacity}{" "}
+            personen — kleinschalig genoeg om het gezellig te houden.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid items-end gap-4 sm:grid-cols-[1fr_1.35fr_1fr]">
+        {/* Photo triptych */}
+        <div className="mt-16 grid items-end gap-4 sm:grid-cols-[1fr_1.35fr_1fr]">
           <Reveal>
             <div className="photo-frame">
               <div className="relative aspect-[3/4]">
@@ -98,20 +101,21 @@ export default function DeZaalPage() {
         </div>
       </section>
 
-      <section className="border-y border-line/80 bg-paper/60">
-        <div className="site-shell py-16">
+      {/* Occasions strip */}
+      <section className="border-y border-line/60 bg-paper/60">
+        <div className="site-shell py-16 sm:py-20">
           <Reveal>
             <h2 className="display text-3xl text-espresso sm:text-4xl">
               Wat hier past
             </h2>
-            <div className="mt-7 flex flex-wrap gap-2.5">
+            <div className="mt-8 flex flex-wrap gap-2.5">
               {occasions.map((item) => (
                 <span key={item} className="chip">
                   {item}
                 </span>
               ))}
             </div>
-            <p className="mt-6 max-w-xl leading-relaxed text-ink-soft">
+            <p className="mt-7 max-w-xl leading-relaxed text-ink-soft">
               Geen strakke eventzaal — wel een plek waar mensen zich meteen
               thuis voelen en mooie herinneringen maken.
             </p>
@@ -119,12 +123,39 @@ export default function DeZaalPage() {
         </div>
       </section>
 
-      <section className="site-shell py-24">
-        <div className="grid gap-5 sm:grid-cols-2">
+      {/* Full-width interieur photo */}
+      <section className="py-16 sm:py-20">
+        <div className="site-shell-wide">
+          <Reveal>
+            <div className="photo-frame">
+              <div className="relative aspect-[21/9] sm:aspect-[21/8]">
+                <Image
+                  src={photos.interieur.src}
+                  alt={photos.interieur.alt}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Features grid */}
+      <section className="site-shell py-12 sm:py-16">
+        <Reveal>
+          <p className="section-label">Wat je kunt verwachten</p>
+          <hr className="section-rule mt-4" />
+        </Reveal>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {features.map((feature, i) => (
-            <Reveal key={feature.title} delay={(i % 2) * 100}>
-              <div className="tile h-full p-8">
-                <h3 className="display text-2xl text-wood">{feature.title}</h3>
+            <Reveal key={feature.title} delay={(i % 2) * 120}>
+              <div className="tile tile-hover h-full p-8 sm:p-10">
+                <span className="display text-3xl text-olive/25">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="display mt-3 text-2xl text-wood">{feature.title}</h3>
                 <p className="mt-3 leading-relaxed text-ink-soft">
                   {feature.text}
                 </p>
@@ -134,11 +165,12 @@ export default function DeZaalPage() {
         </div>
       </section>
 
-      <section className="site-shell pb-8">
+      {/* CTA band */}
+      <section className="site-shell pb-8 pt-12">
         <Reveal>
-          <div className="band-olive overflow-hidden rounded-[1.75rem]">
-            <div className="grid items-center md:grid-cols-[1.15fr_0.85fr]">
-              <div className="px-8 py-14 sm:px-12 sm:py-16">
+          <div className="band-olive grain relative overflow-hidden rounded-[1.75rem]">
+            <div className="relative grid items-center md:grid-cols-[1.15fr_0.85fr]">
+              <div className="px-8 py-16 sm:px-12 sm:py-20">
                 <p className="section-label !text-caramel">Praktisch</p>
                 <h2 className="display mt-4 text-4xl text-cream sm:text-5xl">
                   Vraag je datum aan
@@ -149,11 +181,11 @@ export default function DeZaalPage() {
                   of we kunnen bevestigen. Daarna stemmen we samen alle details
                   af.
                 </p>
-                <Link href="/aanvragen" className="btn btn-cream mt-8">
+                <Link href="/aanvragen" className="btn btn-cream mt-9">
                   Zaal aanvragen
                 </Link>
               </div>
-              <div className="relative hidden min-h-[320px] md:block">
+              <div className="relative hidden min-h-[360px] md:block">
                 <Image
                   src={photos.servies.src}
                   alt={photos.servies.alt}

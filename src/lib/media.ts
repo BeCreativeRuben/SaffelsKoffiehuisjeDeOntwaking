@@ -8,6 +8,10 @@ export const photos = {
     alt: "Interieur van ’t Zaffels Koffiehuisje — lange tafels, hout en olijfgroene muren",
     credit: "Foto: Lochristinaar (tijdelijk)",
   },
+  interieur: {
+    src: "/images/zaal-interieur.jpg",
+    alt: "Gezellig interieur van 't Zaffels Koffiehuisje",
+  },
   overzicht: {
     src: "/photos/zaal-overzicht.jpg",
     alt: "Overzicht van de zaal met houten tafels en bar",

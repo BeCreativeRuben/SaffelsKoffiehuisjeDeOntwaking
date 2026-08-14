@@ -16,6 +16,8 @@
   --accent: #b33a2c;
   --accent-deep: #8f2c21;
   --caramel: #b88955;
+  --caramel-soft: #d4a76a;
+  --warm-white: #fffcf7;
 }
 
 @theme inline {
@@ -37,7 +39,9 @@
   --color-tomato: var(--accent);
   --color-terracotta: var(--accent);
   --color-caramel: var(--caramel);
+  --color-caramel-soft: var(--caramel-soft);
   --color-sage: var(--olive-soft);
+  --color-warm-white: var(--warm-white);
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
   --font-script: var(--font-script);
@@ -74,6 +78,11 @@ a {
   margin-inline: auto;
 }
 
+.site-shell-wide {
+  width: min(1320px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
 /* ---------- Type ---------- */
 
 .display {
@@ -105,6 +114,15 @@ a {
   color: var(--olive);
 }
 
+.section-rule {
+  width: 3.5rem;
+  height: 2px;
+  border: none;
+  background: linear-gradient(90deg, var(--caramel), var(--caramel-soft));
+  border-radius: 1px;
+  margin: 0;
+}
+
 /* ---------- Sticky nav ---------- */
 
 .site-header {
@@ -113,12 +131,13 @@ a {
   z-index: 50;
   border-bottom: 1px solid transparent;
   background: color-mix(in srgb, var(--cream) 72%, transparent);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   transition:
-    background-color 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease,
-    padding 220ms ease;
+    background-color 280ms ease,
+    border-color 280ms ease,
+    box-shadow 280ms ease,
+    padding 280ms ease;
 }
 
 .site-header.is-scrolled {
@@ -133,7 +152,7 @@ a {
   justify-content: space-between;
   gap: 1rem;
   padding-block: 1.05rem;
-  transition: padding 220ms ease;
+  transition: padding 280ms ease;
 }
 
 .site-header.is-scrolled .site-header-inner {
@@ -148,22 +167,23 @@ a {
   justify-content: center;
   gap: 0.5rem;
   min-height: 3.1rem;
-  padding: 0.8rem 1.55rem;
+  padding: 0.8rem 1.75rem;
   border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 600;
+  font-size: 0.95rem;
   letter-spacing: 0.01em;
   cursor: pointer;
   transition:
-    transform 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn:active {
@@ -171,13 +191,18 @@ a {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: linear-gradient(165deg, #c04433, var(--accent-deep));
   color: var(--paper);
-  box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--accent-deep) 70%, transparent);
+  box-shadow:
+    0 14px 28px -14px color-mix(in srgb, var(--accent-deep) 70%, transparent),
+    inset 0 1px 0 0 color-mix(in srgb, white 12%, transparent);
 }
 
 .btn-primary:hover {
-  background: var(--accent-deep);
+  background: linear-gradient(165deg, var(--accent-deep), #7a2219);
+  box-shadow:
+    0 18px 36px -14px color-mix(in srgb, var(--accent-deep) 80%, transparent),
+    inset 0 1px 0 0 color-mix(in srgb, white 12%, transparent);
 }
 
 .btn-ghost {
@@ -189,26 +214,31 @@ a {
 .btn-ghost:hover {
   background: var(--paper);
   border-color: var(--wood);
+  box-shadow: 0 8px 24px -12px color-mix(in srgb, var(--espresso) 20%, transparent);
 }
 
 .btn-cream {
-  background: var(--cream);
+  background: linear-gradient(165deg, var(--warm-white), var(--cream));
   color: var(--espresso);
-  box-shadow: 0 14px 28px -16px rgb(0 0 0 / 0.45);
+  box-shadow:
+    0 14px 28px -16px rgb(0 0 0 / 0.45),
+    inset 0 1px 0 0 color-mix(in srgb, white 40%, transparent);
 }
 
 .btn-cream:hover {
-  background: var(--paper);
+  background: linear-gradient(165deg, white, var(--cream-deep));
 }
 
 .btn-olive {
-  background: var(--olive);
+  background: linear-gradient(165deg, var(--olive), var(--olive-deep));
   color: var(--cream);
-  box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--olive-deep) 70%, transparent);
+  box-shadow:
+    0 14px 28px -14px color-mix(in srgb, var(--olive-deep) 70%, transparent),
+    inset 0 1px 0 0 color-mix(in srgb, white 10%, transparent);
 }
 
 .btn-olive:hover {
-  background: var(--olive-deep);
+  background: linear-gradient(165deg, var(--olive-deep), #2d361f);
 }
 
 .btn-sm {
@@ -223,20 +253,37 @@ a {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 1.25rem;
-  box-shadow: 0 24px 48px -36px color-mix(in srgb, var(--espresso) 40%, transparent);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--espresso) 6%, transparent),
+    0 24px 48px -36px color-mix(in srgb, var(--espresso) 30%, transparent);
+  transition: box-shadow 300ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tile-hover:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--espresso) 8%, transparent),
+    0 32px 56px -36px color-mix(in srgb, var(--espresso) 40%, transparent);
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.45rem 0.95rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: color-mix(in srgb, var(--paper) 80%, transparent);
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--wood);
+  transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.chip:hover {
+  background: var(--paper);
+  border-color: color-mix(in srgb, var(--wood) 35%, transparent);
+  transform: translateY(-1px);
 }
 
 .chip::before {
@@ -261,12 +308,28 @@ a {
   color: var(--cream);
 }
 
+.band-cream {
+  background:
+    radial-gradient(600px 300px at 50% 0%, color-mix(in srgb, var(--caramel-soft) 10%, transparent), transparent 65%),
+    linear-gradient(180deg, var(--cream-deep) 0%, var(--cream) 100%);
+}
+
 .photo-frame {
   overflow: hidden;
   border-radius: 1.35rem;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--wood) 12%, transparent);
   background: var(--wood-deep);
-  box-shadow: 0 30px 60px -36px color-mix(in srgb, var(--espresso) 55%, transparent);
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--espresso) 10%, transparent),
+    0 30px 60px -36px color-mix(in srgb, var(--espresso) 45%, transparent);
+  transition: box-shadow 400ms ease, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photo-frame:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 8px color-mix(in srgb, var(--espresso) 12%, transparent),
+    0 40px 80px -36px color-mix(in srgb, var(--espresso) 50%, transparent);
 }
 
 .photo-frame img {
@@ -274,6 +337,11 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photo-frame:hover img {
+  transform: scale(1.03);
 }
 
 .step-circle {
@@ -284,11 +352,30 @@ a {
   height: 2.6rem;
   flex-shrink: 0;
   border-radius: 999px;
-  background: var(--olive);
+  background: linear-gradient(160deg, var(--olive), var(--olive-deep));
   color: var(--cream);
   font-family: var(--font-display), serif;
   font-size: 1.1rem;
   font-weight: 600;
+  box-shadow:
+    0 8px 20px -8px color-mix(in srgb, var(--olive-deep) 50%, transparent),
+    inset 0 1px 0 0 color-mix(in srgb, white 10%, transparent);
+}
+
+/* ---------- Divider ornament ---------- */
+
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.divider-ornament::before,
+.divider-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
 }
 
 /* ---------- Marquee ---------- */
@@ -333,7 +420,7 @@ a {
 .field select,
 .field textarea {
   width: 100%;
-  border: 1px solid color-mix(in srgb, var(--wood) 24%, transparent);
+  border: 1px solid color-mix(in srgb, var(--wood) 20%, transparent);
   border-radius: 0.85rem;
   background: color-mix(in srgb, white 55%, var(--paper));
   color: var(--ink);
@@ -341,15 +428,22 @@ a {
   font: inherit;
   outline: none;
   transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease;
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
   border-color: color-mix(in srgb, var(--olive) 55%, transparent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--olive) 18%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--olive) 14%, transparent);
+  background: white;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: color-mix(in srgb, var(--ink-soft) 50%, transparent);
 }
 
 .field textarea {
@@ -412,6 +506,34 @@ a {
   }
 }
 
+/* ---------- Grain overlay for sections ---------- */
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ---------- Premium quote styling ---------- */
+
+.quote-mark {
+  font-family: Georgia, serif;
+  font-size: 6rem;
+  line-height: 0;
+  color: color-mix(in srgb, var(--caramel) 40%, transparent);
+  position: absolute;
+  top: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ---------- Responsive reduced motion ---------- */
+
 @media (prefers-reduced-motion: reduce) {
   .fade-up,
   .fade-up-delay,
@@ -433,6 +555,16 @@ a {
 
   .btn,
   .btn:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .photo-frame,
+  .photo-frame:hover,
+  .photo-frame img,
+  .photo-frame:hover img,
+  .tile,
+  .tile-hover:hover {
     transform: none;
     transition: none;
   }

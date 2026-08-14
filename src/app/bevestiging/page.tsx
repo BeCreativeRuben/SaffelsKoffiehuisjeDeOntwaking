@@ -46,13 +46,14 @@ export default async function BevestigingPage({
   }
 
   return (
-    <div className="site-shell flex min-h-[60svh] items-center py-16">
+    <div className="site-shell flex min-h-[60svh] items-center py-20">
       <div className="max-w-xl">
         <p className="section-label">Beheer</p>
-        <h1 className="display mt-4 text-5xl text-espresso sm:text-6xl">
+        <hr className="section-rule mt-4" />
+        <h1 className="display mt-6 text-5xl text-espresso sm:text-6xl">
           {title}
         </h1>
-        <p className="mt-6 text-lg leading-relaxed text-ink-soft">{body}</p>
+        <p className="mt-7 text-lg leading-relaxed text-ink-soft">{body}</p>
         <Link href="/" className="btn btn-primary mt-9">
           Naar de website
         </Link>
