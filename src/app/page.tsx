@@ -49,9 +49,9 @@ const steps = [
 ];
 
 const gallery = [
-  photos.tafel,
-  photos.servies,
-  photos.zithoek,
+  photos.interieur,
+  photos.taart,
+  photos.terras,
   ...higgsfieldStills,
 ];
 
@@ -77,7 +77,7 @@ function MarqueeStrip() {
 export default function HomePage() {
   return (
     <>
-      {/* Full-bleed hero */}
+      {/* Full-bleed hero — real zaal overview */}
       <section className="relative isolate min-h-[90svh] overflow-hidden grain">
         <Image
           src={photos.hero.src}
@@ -117,9 +117,6 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <p className="fade-up-delay-3 mt-12 text-[0.7rem] tracking-wide text-cream/40">
-            {photos.hero.credit}
-          </p>
         </div>
       </section>
 
@@ -150,15 +147,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Full-width intermezzo image */}
+      {/* Full-width hoeve exterior */}
       <section className="relative overflow-hidden">
         <div className="site-shell-wide">
           <Reveal>
             <div className="photo-frame">
               <div className="relative aspect-[21/9] sm:aspect-[21/8]">
                 <Image
-                  src={photos.interieur.src}
-                  alt={photos.interieur.alt}
+                  src={photos.hoeve.src}
+                  alt={photos.hoeve.alt}
                   fill
                   sizes="100vw"
                   className="object-cover"
@@ -169,7 +166,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Atmosphere gallery */}
+      {/* Atmosphere gallery — real shots + Higgsfield stills */}
       <section className="border-y border-line/60 bg-paper/60 py-28 sm:py-32 mt-28">
         <div className="site-shell">
           <Reveal>
@@ -260,8 +257,8 @@ export default function HomePage() {
               </div>
               <div className="relative hidden min-h-[320px] md:block">
                 <Image
-                  src={photos.overzicht.src}
-                  alt={photos.overzicht.alt}
+                  src={photos.ontbijt.src}
+                  alt={photos.ontbijt.alt}
                   fill
                   sizes="40vw"
                   className="object-cover"

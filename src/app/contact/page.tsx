@@ -102,14 +102,14 @@ export default function ContactPage() {
         </Reveal>
       </div>
 
-      {/* Atmospheric photo */}
+      {/* Hoeve exterior */}
       <div className="mt-16">
         <Reveal>
           <div className="photo-frame">
             <div className="relative aspect-[21/9]">
               <Image
-                src={photos.interieur.src}
-                alt={photos.interieur.alt}
+                src={photos.hoeve.src}
+                alt={photos.hoeve.alt}
                 fill
                 sizes="100vw"
                 className="object-cover"

@@ -41,7 +41,7 @@ const features = [
 export default function DeZaalPage() {
   return (
     <>
-      {/* Hero section with offset heading */}
+      {/* Hero with heading */}
       <section className="site-shell py-20 sm:py-24">
         <Reveal>
           <p className="section-label">De zaal</p>
@@ -56,14 +56,14 @@ export default function DeZaalPage() {
           </p>
         </Reveal>
 
-        {/* Photo triptych */}
+        {/* Photo triptych: interieur / hero overview / terras */}
         <div className="mt-16 grid items-end gap-4 sm:grid-cols-[1fr_1.35fr_1fr]">
           <Reveal>
             <div className="photo-frame">
               <div className="relative aspect-[3/4]">
                 <Image
-                  src={photos.tafel.src}
-                  alt={photos.tafel.alt}
+                  src={photos.interieur.src}
+                  alt={photos.interieur.alt}
                   fill
                   sizes="30vw"
                   className="object-cover"
@@ -75,8 +75,8 @@ export default function DeZaalPage() {
             <div className="photo-frame">
               <div className="relative aspect-[4/3.6]">
                 <Image
-                  src={photos.overzicht.src}
-                  alt={photos.overzicht.alt}
+                  src={photos.hero.src}
+                  alt={photos.hero.alt}
                   fill
                   sizes="40vw"
                   priority
@@ -89,8 +89,8 @@ export default function DeZaalPage() {
             <div className="photo-frame">
               <div className="relative aspect-[3/4]">
                 <Image
-                  src={photos.zithoek.src}
-                  alt={photos.zithoek.alt}
+                  src={photos.terras.src}
+                  alt={photos.terras.alt}
                   fill
                   sizes="30vw"
                   className="object-cover"
@@ -123,15 +123,15 @@ export default function DeZaalPage() {
         </div>
       </section>
 
-      {/* Full-width interieur photo */}
+      {/* Full-width hoeve exterior */}
       <section className="py-16 sm:py-20">
         <div className="site-shell-wide">
           <Reveal>
             <div className="photo-frame">
               <div className="relative aspect-[21/9] sm:aspect-[21/8]">
                 <Image
-                  src={photos.interieur.src}
-                  alt={photos.interieur.alt}
+                  src={photos.hoeve.src}
+                  alt={photos.hoeve.alt}
                   fill
                   sizes="100vw"
                   className="object-cover"
@@ -142,7 +142,7 @@ export default function DeZaalPage() {
         </div>
       </section>
 
-      {/* Features grid */}
+      {/* Features */}
       <section className="site-shell py-12 sm:py-16">
         <Reveal>
           <p className="section-label">Wat je kunt verwachten</p>
@@ -165,7 +165,7 @@ export default function DeZaalPage() {
         </div>
       </section>
 
-      {/* CTA band */}
+      {/* CTA */}
       <section className="site-shell pb-8 pt-12">
         <Reveal>
           <div className="band-olive grain relative overflow-hidden rounded-[1.75rem]">
@@ -187,8 +187,8 @@ export default function DeZaalPage() {
               </div>
               <div className="relative hidden min-h-[360px] md:block">
                 <Image
-                  src={photos.servies.src}
-                  alt={photos.servies.alt}
+                  src={photos.taart.src}
+                  alt={photos.taart.alt}
                   fill
                   sizes="40vw"
                   className="object-cover"

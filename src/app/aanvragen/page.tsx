@@ -52,8 +52,8 @@ export default function AanvragenPage() {
             <div className="photo-frame">
               <div className="relative aspect-[4/3]">
                 <Image
-                  src={photos.interieur.src}
-                  alt={photos.interieur.alt}
+                  src={photos.terras.src}
+                  alt={photos.terras.alt}
                   fill
                   sizes="35vw"
                   className="object-cover"
