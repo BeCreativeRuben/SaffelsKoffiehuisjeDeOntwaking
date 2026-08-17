@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { RequestForm } from "@/components/RequestForm";
+import { photos } from "@/lib/media";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,16 +20,17 @@ const steps = [
 
 export default function AanvragenPage() {
   return (
-    <div className="site-shell py-16 sm:py-20">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+    <div className="site-shell py-20 sm:py-24">
+      <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div className="lg:sticky lg:top-28">
           <p className="section-label">Aanvragen</p>
-          <h1 className="display mt-4 text-5xl text-espresso sm:text-6xl">
+          <hr className="section-rule mt-4" />
+          <h1 className="display mt-6 text-5xl text-espresso sm:text-6xl">
             Vraag je{" "}
             <span className="display-italic text-olive">datum</span> aan
           </h1>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-soft">
-            Comfortabel voor zo’n {site.capacity} personen. Geen account, geen
+          <p className="mt-7 max-w-md text-lg leading-relaxed text-ink-soft">
+            Comfortabel voor zo&apos;n {site.capacity} personen. Geen account, geen
             online betaling — jij vraagt aan, wij bevestigen.
           </p>
 
@@ -44,9 +47,24 @@ export default function AanvragenPage() {
               </li>
             ))}
           </ol>
+
+          <div className="mt-12 hidden lg:block">
+            <div className="photo-frame">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src={photos.terras.src}
+                  alt={photos.terras.alt}
+                  fill
+                  sizes="35vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="tile p-6 sm:p-9">
+        <div className="tile p-6 sm:p-10">
+          <h2 className="display mb-8 text-2xl text-wood">Je gegevens</h2>
           <RequestForm />
         </div>
       </div>

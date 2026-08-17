@@ -37,7 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="nl"
       className={`${fraunces.variable} ${karla.variable} ${caveat.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col antialiased">
+      <body className="min-h-full flex flex-col antialiased bg-cream text-ink">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
