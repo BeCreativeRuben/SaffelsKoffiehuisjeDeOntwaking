@@ -218,11 +218,11 @@ export default function HomePage() {
           <p className="section-label">Zo werkt het</p>
           <hr className="section-rule mt-4" />
           <h2 className="display mt-6 max-w-2xl text-4xl text-espresso sm:text-5xl">
-            Aangevraagd in twee minuten.
+            Je vraagt aan, wij kijken of het past.
           </h2>
           <p className="mt-5 max-w-xl text-[1.05rem] leading-[1.75] text-ink-soft">
-            Geen account, geen gedoe. Jij stuurt je datum door, wij bekijken de
-            agenda, en je hoort snel van ons.
+            Zet je datum in het formulier. Wij checken de agenda en mailen je
+            terug.
           </p>
         </Reveal>
         <ol className="mt-16 grid gap-0 md:grid-cols-3">
