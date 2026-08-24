@@ -174,7 +174,7 @@ export default function HomePage() {
             <p className="section-label">De sfeer</p>
             <hr className="section-rule mt-4" />
             <h2 className="display mt-6 max-w-2xl text-4xl text-espresso sm:text-5xl">
-              Hout, olijfgroen en een lange tafel.
+              Hier is de tafel het huis.
             </h2>
           </Reveal>
           <div className="mt-14 grid gap-5 sm:grid-cols-3">
