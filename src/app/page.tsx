@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { Sprig, Heart, CoffeePot } from "@/components/Ornaments";
+import { Sprig } from "@/components/Ornaments";
 import { photos, higgsfieldStills } from "@/lib/media";
 import { site } from "@/lib/site";
 
@@ -19,17 +19,14 @@ const values = [
   {
     title: "Huiselijk & familiaal",
     text: "Geen chique boel, wel warmte. Een plek waar je meteen je jas uitdoet en je thuis voelt.",
-    icon: Heart,
   },
   {
     title: "Eerlijke keuken",
     text: "Authentieke producten en goed eten, voedingsgewijs zoals het hoort. Zonder franjes, met smaak.",
-    icon: CoffeePot,
   },
   {
     title: "Iedereen welkom",
     text: "Iedereen mag er zijn wie die is — zonder teveel poespas. Dat is het hele idee.",
-    icon: Sprig,
   },
 ];
 
@@ -104,7 +101,7 @@ export default function HomePage() {
               Een zaaltje dat voelt als{" "}
               <span className="display-italic">thuiskomen</span>.
             </h1>
-            <p className="fade-up-delay-2 mt-6 max-w-lg text-lg leading-relaxed text-cream/85 sm:text-xl sm:leading-relaxed">
+            <p className="fade-up-delay-2 mt-7 max-w-lg text-[1.05rem] leading-[1.75] text-cream/80 sm:text-lg sm:leading-[1.8]">
               Vier je verjaardag, communie of familiefeest in ons huiselijke
               koffiehuisje — kleinschalig genoeg om het écht gezellig te houden.
             </p>
@@ -131,17 +128,21 @@ export default function HomePage() {
             Klein gehouden, met opzet.
           </h2>
         </Reveal>
-        <div className="mt-16 grid gap-5 md:grid-cols-3">
+        <div className="mt-16 grid gap-0 md:grid-cols-3">
           {values.map((value, i) => (
             <Reveal key={value.title} delay={i * 120}>
-              <div className="tile tile-hover h-full p-8 sm:p-10">
-                <value.icon className="mb-6 h-10 w-10 text-olive/50" />
-                <span className="display text-4xl text-olive/30">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="display mt-4 text-2xl text-wood">{value.title}</h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">{value.text}</p>
-              </div>
+              <article
+                className={`py-8 md:px-8 lg:px-10 ${
+                  i > 0
+                    ? "border-t border-line md:border-t-0 md:border-l"
+                    : "md:pl-0"
+                } ${i === values.length - 1 ? "md:pr-0" : ""}`}
+              >
+                <h3 className="display text-[1.35rem] text-wood">{value.title}</h3>
+                <p className="mt-3 max-w-sm text-[0.95rem] leading-relaxed text-ink-soft">
+                  {value.text}
+                </p>
+              </article>
             </Reveal>
           ))}
         </div>
@@ -201,11 +202,11 @@ export default function HomePage() {
         <div className="site-shell relative py-28 text-center sm:py-32">
           <Reveal>
             <Sprig className="mx-auto mb-8 h-12 w-12 text-caramel/40" />
-            <blockquote className="display-italic mx-auto max-w-3xl text-3xl leading-snug text-cream sm:text-4xl md:text-5xl">
+            <blockquote className="display-italic mx-auto max-w-2xl text-[1.75rem] leading-[1.35] text-cream sm:text-4xl sm:leading-[1.3] md:text-[2.75rem]">
               &ldquo;Iedereen mag er zijn wie die is — zonder teveel
               poespas.&rdquo;
             </blockquote>
-            <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-caramel">
+            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-caramel">
               {site.name}
             </p>
           </Reveal>
@@ -220,22 +221,32 @@ export default function HomePage() {
           <h2 className="display mt-6 max-w-2xl text-4xl text-espresso sm:text-5xl">
             Aangevraagd in twee minuten.
           </h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+          <p className="mt-5 max-w-xl text-[1.05rem] leading-[1.75] text-ink-soft">
             Geen account, geen gedoe. Jij stuurt je datum door, wij bekijken de
             agenda, en je hoort snel van ons.
           </p>
         </Reveal>
-        <div className="mt-16 grid gap-5 md:grid-cols-3">
+        <ol className="mt-16 grid gap-0 md:grid-cols-3">
           {steps.map((step, i) => (
             <Reveal key={step.title} delay={i * 120}>
-              <div className="tile tile-hover h-full p-8 sm:p-10">
-                <span className="step-circle">{i + 1}</span>
-                <h3 className="display mt-6 text-xl text-wood">{step.title}</h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">{step.text}</p>
-              </div>
+              <li
+                className={`py-8 md:px-8 lg:px-10 ${
+                  i > 0
+                    ? "border-t border-line md:border-t-0 md:border-l"
+                    : "md:pl-0"
+                } ${i === steps.length - 1 ? "md:pr-0" : ""}`}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-olive/70">
+                  Stap {i + 1}
+                </p>
+                <h3 className="display mt-3 text-[1.35rem] text-wood">{step.title}</h3>
+                <p className="mt-2 max-w-sm text-[0.95rem] leading-relaxed text-ink-soft">
+                  {step.text}
+                </p>
+              </li>
             </Reveal>
           ))}
-        </div>
+        </ol>
       </section>
 
       {/* CTA */}

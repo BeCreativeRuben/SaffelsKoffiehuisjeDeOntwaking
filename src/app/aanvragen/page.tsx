@@ -29,21 +29,18 @@ export default function AanvragenPage() {
             Vraag je{" "}
             <span className="display-italic text-olive">datum</span> aan
           </h1>
-          <p className="mt-7 max-w-md text-lg leading-relaxed text-ink-soft">
+          <p className="mt-7 max-w-md text-[1.05rem] leading-[1.75] text-ink-soft">
             Comfortabel voor zo&apos;n {site.capacity} personen. Geen account, geen
             online betaling — jij vraagt aan, wij bevestigen.
           </p>
 
-          <ol className="mt-10 space-y-5">
-            {steps.map((step, i) => (
-              <li key={step.title} className="flex gap-4">
-                <span className="step-circle text-base">{i + 1}</span>
-                <div>
-                  <p className="font-bold text-wood">{step.title}</p>
-                  <p className="mt-0.5 text-sm leading-relaxed text-ink-soft">
-                    {step.text}
-                  </p>
-                </div>
+          <ol className="mt-10 space-y-6 border-l border-line pl-6">
+            {steps.map((step) => (
+              <li key={step.title}>
+                <p className="font-bold text-wood">{step.title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+                  {step.text}
+                </p>
               </li>
             ))}
           </ol>

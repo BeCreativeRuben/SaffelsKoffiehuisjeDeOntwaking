@@ -21,7 +21,7 @@ export default function BedanktPage() {
             Aanvraag{" "}
             <span className="display-italic text-olive">ontvangen</span>
           </h1>
-          <p className="mt-7 max-w-lg text-lg leading-relaxed text-ink-soft">
+          <p className="mt-7 max-w-lg text-[1.05rem] leading-[1.75] text-ink-soft">
             We hebben je aanvraag goed ontvangen en checken de agenda. Je hoort
             van ons zodra we weten of de datum past — hou je mailbox in de
             gaten.
