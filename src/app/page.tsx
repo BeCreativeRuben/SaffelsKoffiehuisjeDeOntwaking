@@ -203,8 +203,7 @@ export default function HomePage() {
           <Reveal>
             <Sprig className="mx-auto mb-8 h-12 w-12 text-caramel/40" />
             <blockquote className="display-italic mx-auto max-w-2xl text-[1.75rem] leading-[1.35] text-cream sm:text-4xl sm:leading-[1.3] md:text-[2.75rem]">
-              &ldquo;Iedereen mag er zijn wie die is — zonder teveel
-              poespas.&rdquo;
+              &ldquo;Aan deze tafel is iedereen thuis.&rdquo;
             </blockquote>
             <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-caramel">
               {site.name}

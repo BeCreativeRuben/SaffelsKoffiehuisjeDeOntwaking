@@ -11,8 +11,7 @@ export function Footer() {
             <Sprig className="mb-4 h-8 w-8 text-caramel/50" />
             <p className="display text-3xl text-cream">{site.name}</p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/70">
-              Huiselijk &amp; familiaal. Iedereen mag er zijn wie die is —
-              zonder teveel poespas.
+              Huiselijk &amp; familiaal. Aan deze tafel is iedereen thuis.
             </p>
           </div>
 
