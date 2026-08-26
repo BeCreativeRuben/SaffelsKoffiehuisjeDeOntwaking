@@ -125,7 +125,7 @@ export default async function DeZaalPage() {
           <hr className="section-rule mt-4" />
         </Reveal>
         <div className="mt-10 grid gap-0 sm:grid-cols-2">
-          {features.map((feature, i) => (
+          {content.deZaalFeatures.map((feature, i) => (
             <Reveal key={feature.title} delay={(i % 2) * 120}>
               <div
                 className={`py-8 sm:px-8 lg:px-10 ${
