@@ -4,49 +4,11 @@ import { Reveal } from "@/components/Reveal";
 import { Sprig, Heart, CoffeePot } from "@/components/Ornaments";
 import { photos, higgsfieldStills } from "@/lib/media";
 import { site } from "@/lib/site";
+import { getContent } from "@/lib/content";
 
-const occasions = [
-  "Verjaardagen",
-  "Communies",
-  "Lentefeesten",
-  "Familiefeesten",
-  "Babyborrels",
-  "Koffietafels",
-  "Kleine vieringen",
-];
+export const dynamic = "force-dynamic";
 
-const values = [
-  {
-    title: "Huiselijk & familiaal",
-    text: "Geen chique boel, wel warmte. Een plek waar je meteen je jas uitdoet en je thuis voelt.",
-    icon: Heart,
-  },
-  {
-    title: "Eerlijke keuken",
-    text: "Authentieke producten en goed eten, voedingsgewijs zoals het hoort. Zonder franjes, met smaak.",
-    icon: CoffeePot,
-  },
-  {
-    title: "Iedereen welkom",
-    text: "Iedereen mag er zijn wie die is — zonder teveel poespas. Dat is het hele idee.",
-    icon: Sprig,
-  },
-];
-
-const steps = [
-  {
-    title: "Stuur je aanvraag",
-    text: "Kies je datum, tijdstip en aantal personen via het formulier. Twee minuutjes werk.",
-  },
-  {
-    title: "Wij checken de agenda",
-    text: "We bekijken of je datum past en komen zo snel mogelijk bij je terug.",
-  },
-  {
-    title: "Je krijgt bevestiging",
-    text: "Past het? Dan krijg je een bevestiging per mail en stemmen we samen de details af.",
-  },
-];
+const iconMap = [Heart, CoffeePot, Sprig];
 
 const gallery = [
   photos.interieur,
@@ -55,7 +17,7 @@ const gallery = [
   ...higgsfieldStills,
 ];
 
-function MarqueeStrip() {
+function MarqueeStrip({ occasions }: { occasions: string[] }) {
   const items = [...occasions, ...occasions];
   return (
     <div className="marquee border-y border-line/80 bg-paper/70 py-4">
@@ -74,7 +36,8 @@ function MarqueeStrip() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const content = await getContent();
   return (
     <>
       {/* Full-bleed hero — real zaal overview */}
@@ -101,12 +64,17 @@ export default function HomePage() {
               Zaaltje te huur · ±{site.capacity} personen
             </p>
             <h1 className="fade-up-delay display mt-5 text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem]">
-              Een zaaltje dat voelt als{" "}
-              <span className="display-italic">thuiskomen</span>.
+              {content.heroTitle.includes("thuiskomen") ? (
+                <>
+                  Een zaaltje dat voelt als{" "}
+                  <span className="display-italic">thuiskomen</span>.
+                </>
+              ) : (
+                content.heroTitle
+              )}
             </h1>
             <p className="fade-up-delay-2 mt-6 max-w-lg text-lg leading-relaxed text-cream/85 sm:text-xl sm:leading-relaxed">
-              Vier je verjaardag, communie of familiefeest in ons huiselijke
-              koffiehuisje — kleinschalig genoeg om het écht gezellig te houden.
+              {content.heroSubtitle}
             </p>
             <div className="fade-up-delay-3 mt-9 flex flex-wrap gap-3">
               <Link href="/aanvragen" className="btn btn-primary">
@@ -120,7 +88,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <MarqueeStrip />
+      <MarqueeStrip occasions={content.occasions} />
 
       {/* Values */}
       <section className="site-shell py-28 sm:py-32">
@@ -128,14 +96,16 @@ export default function HomePage() {
           <p className="section-label">Waar we voor staan</p>
           <hr className="section-rule mt-4" />
           <h2 className="display mt-6 max-w-2xl text-4xl text-espresso sm:text-5xl">
-            Klein gehouden, met opzet.
+            {content.aboutIntro}
           </h2>
         </Reveal>
         <div className="mt-16 grid gap-5 md:grid-cols-3">
-          {values.map((value, i) => (
+          {content.values.map((value, i) => {
+            const Icon = iconMap[i % iconMap.length];
+            return (
             <Reveal key={value.title} delay={i * 120}>
               <div className="tile tile-hover h-full p-8 sm:p-10">
-                <value.icon className="mb-6 h-10 w-10 text-olive/50" />
+                <Icon className="mb-6 h-10 w-10 text-olive/50" />
                 <span className="display text-4xl text-olive/30">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -143,7 +113,8 @@ export default function HomePage() {
                 <p className="mt-3 leading-relaxed text-ink-soft">{value.text}</p>
               </div>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -202,11 +173,10 @@ export default function HomePage() {
           <Reveal>
             <Sprig className="mx-auto mb-8 h-12 w-12 text-caramel/40" />
             <blockquote className="display-italic mx-auto max-w-3xl text-3xl leading-snug text-cream sm:text-4xl md:text-5xl">
-              &ldquo;Iedereen mag er zijn wie die is — zonder teveel
-              poespas.&rdquo;
+              &ldquo;{content.quoteText}&rdquo;
             </blockquote>
             <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-caramel">
-              {site.name}
+              {content.quoteAttribution}
             </p>
           </Reveal>
         </div>
@@ -226,7 +196,7 @@ export default function HomePage() {
           </p>
         </Reveal>
         <div className="mt-16 grid gap-5 md:grid-cols-3">
-          {steps.map((step, i) => (
+          {content.steps.map((step, i) => (
             <Reveal key={step.title} delay={i * 120}>
               <div className="tile tile-hover h-full p-8 sm:p-10">
                 <span className="step-circle">{i + 1}</span>

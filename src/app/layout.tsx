@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, Karla, Caveat } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { CustomCursor } from "@/components/CustomCursor";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -38,6 +40,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${karla.variable} ${caveat.variable} h-full`}
     >
       <body className="min-h-full flex flex-col antialiased bg-cream text-ink">
+        <CustomCursor />
+        <SmoothScroll />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -4,41 +4,17 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/media";
 import { site } from "@/lib/site";
+import { getContent } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "De zaal",
   description: `Het zaaltje van ${site.name}: huiselijk, familiaal en comfortabel voor zo'n ${site.capacity} personen.`,
 };
 
-const occasions = [
-  "Verjaardagen",
-  "Communies & lentefeesten",
-  "Babyborrels",
-  "Familiefeesten",
-  "Koffietafels",
-  "Kleine bijeenkomsten",
-];
-
-const features = [
-  {
-    title: `±${site.capacity} personen`,
-    text: "Comfortabel zitten voor zo'n 35 gasten. Kleinschalig genoeg om iedereen bij het gesprek te houden.",
-  },
-  {
-    title: "Eerlijke keuken",
-    text: "Authentieke, eerlijke producten en een keuken die voedingsgewijs klopt. Geen franjes, wel smaak.",
-  },
-  {
-    title: "Huiselijke sfeer",
-    text: "Olijfgroene muren, houten tafels en een zithoek. Als thuis, maar dan met bediening.",
-  },
-  {
-    title: "Familiaal onthaal",
-    text: "We kennen onze gasten graag bij naam. Jij viert, wij zorgen dat alles loopt.",
-  },
-];
-
-export default function DeZaalPage() {
+export default async function DeZaalPage() {
+  const content = await getContent();
   return (
     <>
       {/* Hero with heading */}
@@ -51,7 +27,7 @@ export default function DeZaalPage() {
             <span className="display-italic text-olive">niet chique</span>.
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed">
-            {site.description} Comfortabel voor zo&apos;n {site.capacity}{" "}
+            {content.deZaalIntro} Comfortabel voor zo&apos;n {site.capacity}{" "}
             personen — kleinschalig genoeg om het gezellig te houden.
           </p>
         </Reveal>
@@ -109,7 +85,7 @@ export default function DeZaalPage() {
               Wat hier past
             </h2>
             <div className="mt-8 flex flex-wrap gap-2.5">
-              {occasions.map((item) => (
+              {content.occasions.map((item) => (
                 <span key={item} className="chip">
                   {item}
                 </span>
@@ -149,7 +125,7 @@ export default function DeZaalPage() {
           <hr className="section-rule mt-4" />
         </Reveal>
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {features.map((feature, i) => (
+          {content.deZaalFeatures.map((feature, i) => (
             <Reveal key={feature.title} delay={(i % 2) * 120}>
               <div className="tile tile-hover h-full p-8 sm:p-10">
                 <span className="display text-3xl text-olive/25">
