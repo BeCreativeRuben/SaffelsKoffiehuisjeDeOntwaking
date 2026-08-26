@@ -144,8 +144,7 @@ export default async function HomePage() {
                 </p>
               </article>
             </Reveal>
-            );
-          })}
+          ))}
         </div>
       </section>
 
