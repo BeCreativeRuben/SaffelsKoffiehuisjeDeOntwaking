@@ -37,6 +37,7 @@ Copy `.env.example` → `.env.local` (local) and set the same vars in the Vercel
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Optional public contact e-mail (preferred over OWNER_EMAIL for display) |
 | `NEXT_PUBLIC_PHONE` | Optional phone on contact page — only shown when set |
 | `NEXT_PUBLIC_ADDRESS` | Optional address — only shown when set (do not invent; Persijzerstraat only after confirmed in env) |
+| `ADMIN_PASSWORD` | Password for the `/admin` content editor — lets the owner change text, hours, and occasions |
 
 Optional: run `db/schema.sql` in the Neon SQL editor (the app also creates the table on first request).
 

@@ -4,16 +4,9 @@ import { Reveal } from "@/components/Reveal";
 import { Sprig } from "@/components/Ornaments";
 import { photos, higgsfieldStills } from "@/lib/media";
 import { site } from "@/lib/site";
+import { getContent } from "@/lib/content";
 
-const occasions = [
-  "Verjaardagen",
-  "Communies",
-  "Lentefeesten",
-  "Familiefeesten",
-  "Babyborrels",
-  "Koffietafels",
-  "Kleine vieringen",
-];
+export const dynamic = "force-dynamic";
 
 const values = [
   {
@@ -52,7 +45,7 @@ const gallery = [
   ...higgsfieldStills,
 ];
 
-function MarqueeStrip() {
+function MarqueeStrip({ occasions }: { occasions: string[] }) {
   const items = [...occasions, ...occasions];
   return (
     <div className="marquee border-y border-line/80 bg-paper/70 py-4">
@@ -71,7 +64,8 @@ function MarqueeStrip() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const content = await getContent();
   return (
     <>
       {/* Full-bleed hero — real zaal overview */}
@@ -98,8 +92,14 @@ export default function HomePage() {
               Zaaltje te huur · ±{site.capacity} personen
             </p>
             <h1 className="fade-up-delay display mt-5 text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem]">
-              Een zaaltje dat voelt als{" "}
-              <span className="display-italic">thuiskomen</span>.
+              {content.heroTitle.includes("thuiskomen") ? (
+                <>
+                  Een zaaltje dat voelt als{" "}
+                  <span className="display-italic">thuiskomen</span>.
+                </>
+              ) : (
+                content.heroTitle
+              )}
             </h1>
             <p className="fade-up-delay-2 mt-7 max-w-lg text-[1.05rem] leading-[1.75] text-cream/80 sm:text-lg sm:leading-[1.8]">
               Vier je verjaardag, communie of familiefeest in ons huiselijke
@@ -117,7 +117,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <MarqueeStrip />
+      <MarqueeStrip occasions={content.occasions} />
 
       {/* Values */}
       <section className="site-shell py-28 sm:py-32">
@@ -125,7 +125,7 @@ export default function HomePage() {
           <p className="section-label">Waar we voor staan</p>
           <hr className="section-rule mt-4" />
           <h2 className="display mt-6 max-w-2xl text-4xl text-espresso sm:text-5xl">
-            Klein gehouden, met opzet.
+            {content.aboutIntro}
           </h2>
         </Reveal>
         <div className="mt-16 grid gap-0 md:grid-cols-3">
@@ -144,7 +144,8 @@ export default function HomePage() {
                 </p>
               </article>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </section>
 

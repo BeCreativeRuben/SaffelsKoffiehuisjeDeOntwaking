@@ -4,41 +4,17 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/media";
 import { site } from "@/lib/site";
+import { getContent } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "De zaal",
   description: `Het zaaltje van ${site.name}: huiselijk, familiaal en comfortabel voor zo'n ${site.capacity} personen.`,
 };
 
-const occasions = [
-  "Verjaardagen",
-  "Communies & lentefeesten",
-  "Babyborrels",
-  "Familiefeesten",
-  "Koffietafels",
-  "Kleine bijeenkomsten",
-];
-
-const features = [
-  {
-    title: `±${site.capacity} personen`,
-    text: "Comfortabel zitten voor zo'n 35 gasten. Kleinschalig genoeg om iedereen bij het gesprek te houden.",
-  },
-  {
-    title: "Eerlijke keuken",
-    text: "Authentieke, eerlijke producten en een keuken die voedingsgewijs klopt. Geen franjes, wel smaak.",
-  },
-  {
-    title: "Huiselijke sfeer",
-    text: "Olijfgroene muren, houten tafels en een zithoek. Als thuis, maar dan met bediening.",
-  },
-  {
-    title: "Familiaal onthaal",
-    text: "We kennen onze gasten graag bij naam. Jij viert, wij zorgen dat alles loopt.",
-  },
-];
-
-export default function DeZaalPage() {
+export default async function DeZaalPage() {
+  const content = await getContent();
   return (
     <>
       {/* Hero with heading */}
@@ -109,7 +85,7 @@ export default function DeZaalPage() {
               Wat hier past
             </h2>
             <div className="mt-8 flex flex-wrap gap-2.5">
-              {occasions.map((item) => (
+              {content.occasions.map((item) => (
                 <span key={item} className="chip">
                   {item}
                 </span>
