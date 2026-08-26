@@ -4,13 +4,17 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/media";
 import { site } from "@/lib/site";
+import { getContent } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Contact",
   description: `Contacteer ${site.name} of vraag de zaal aan via het formulier.`,
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const content = await getContent();
   const hasDetails = Boolean(site.email || site.phone || site.address);
 
   return (
@@ -22,8 +26,7 @@ export default function ContactPage() {
           Zeg <span className="display-italic text-olive">hallo</span>
         </h1>
         <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
-          Wil je de zaal huren? Het snelst gaat het via een aanvraag — zo staat
-          alles meteen duidelijk.
+          {content.contactIntro}
         </p>
       </Reveal>
 
@@ -70,7 +73,15 @@ export default function ContactPage() {
                 daarop reageren we persoonlijk.
               </p>
             )}
-            <div className="mt-8 border-t border-line pt-6">
+            {content.openingHours && (
+              <div className="mt-7 border-t border-line pt-6">
+                <span className="section-label">Openingsuren</span>
+                <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-ink-soft">
+                  {content.openingHours}
+                </p>
+              </div>
+            )}
+            <div className="mt-7 border-t border-line pt-6">
               <p className="text-sm leading-relaxed text-ink-soft">
                 Ook{" "}
                 <span className="display-italic text-base text-wood">
