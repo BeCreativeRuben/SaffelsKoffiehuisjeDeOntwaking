@@ -25,8 +25,9 @@ export default async function ContactPage() {
         <h1 className="display mt-6 text-5xl text-espresso sm:text-6xl">
           Zeg <span className="display-italic text-olive">hallo</span>
         </h1>
-        <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
-          {content.contactIntro}
+        <p className="mt-7 max-w-xl text-[1.05rem] leading-[1.75] text-ink-soft">
+          Wil je de zaal huren? Het snelst gaat het via een aanvraag — zo staat
+          alles meteen duidelijk.
         </p>
       </Reveal>
 

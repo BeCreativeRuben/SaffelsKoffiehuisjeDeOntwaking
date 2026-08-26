@@ -26,8 +26,8 @@ export default async function DeZaalPage() {
             Huiselijk,{" "}
             <span className="display-italic text-olive">niet chique</span>.
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed">
-            {content.deZaalIntro} Comfortabel voor zo&apos;n {site.capacity}{" "}
+          <p className="mt-7 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-soft sm:text-lg sm:leading-[1.8]">
+            {site.description} Comfortabel voor zo&apos;n {site.capacity}{" "}
             personen — kleinschalig genoeg om het gezellig te houden.
           </p>
         </Reveal>
@@ -124,15 +124,18 @@ export default async function DeZaalPage() {
           <p className="section-label">Wat je kunt verwachten</p>
           <hr className="section-rule mt-4" />
         </Reveal>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {content.deZaalFeatures.map((feature, i) => (
+        <div className="mt-10 grid gap-0 sm:grid-cols-2">
+          {features.map((feature, i) => (
             <Reveal key={feature.title} delay={(i % 2) * 120}>
-              <div className="tile tile-hover h-full p-8 sm:p-10">
-                <span className="display text-3xl text-olive/25">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="display mt-3 text-2xl text-wood">{feature.title}</h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">
+              <div
+                className={`py-8 sm:px-8 lg:px-10 ${
+                  i >= 2 ? "border-t border-line" : ""
+                } ${i % 2 !== 0 ? "sm:border-l sm:border-line" : "sm:pl-0"} ${
+                  i % 2 === 0 && i < 2 ? "sm:pr-8 lg:pr-10" : ""
+                }`}
+              >
+                <h3 className="display text-[1.35rem] text-wood">{feature.title}</h3>
+                <p className="mt-3 max-w-sm text-[0.95rem] leading-relaxed text-ink-soft">
                   {feature.text}
                 </p>
               </div>
