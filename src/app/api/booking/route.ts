@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "Je aanvraag kon niet worden verstuurd. Probeer later opnieuw of mail ons.",
+          "Je aanvraag kon niet worden verstuurd. Probeer later opnieuw of bel 0493 64 35 15.",
       },
       { status: 500 },
     );

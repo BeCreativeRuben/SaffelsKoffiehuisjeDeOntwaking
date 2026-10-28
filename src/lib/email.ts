@@ -11,7 +11,10 @@ function getResend() {
 }
 
 function fromAddress() {
-  return process.env.FROM_EMAIL ?? "’t Zaffels Koffiehuisje <onboarding@resend.dev>";
+  return (
+    process.env.FROM_EMAIL ??
+    "Saffels koffiehuisje <onboarding@resend.dev>"
+  );
 }
 
 function ownerEmail() {

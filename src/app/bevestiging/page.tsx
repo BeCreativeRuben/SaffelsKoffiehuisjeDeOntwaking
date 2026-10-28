@@ -20,17 +20,17 @@ export default async function BevestigingPage({
   const status = params.status ?? "invalid";
   const decision = params.decision;
 
-  let title = "Link ongeldig";
+  let title = "Deze link werkt niet";
   let body =
-    "Deze goedkeuringslink is ongeldig of verlopen. Open de nieuwste e-mail of vraag de gast een nieuwe aanvraag te sturen.";
+    "De link is ongeldig of al gebruikt. Open de nieuwste e-mail, of vraag om een nieuwe aanvraag.";
 
   if (status === "ok" && decision === "approved") {
     title = "Aanvraag goedgekeurd";
     body =
-      "De gast heeft een bevestigingsmail ontvangen. Stem daarna zelf de laatste details af.";
+      "De gast heeft een mail gekregen. Spreek daarna zelf de laatste dingen af.";
   } else if (status === "ok" && decision === "declined") {
     title = "Aanvraag afgewezen";
-    body = "De gast heeft een e-mail ontvangen dat deze datum niet kan.";
+    body = "De gast heeft een mail gekregen dat deze datum niet kan.";
   } else if (status === "already") {
     title = "Al behandeld";
     body =
@@ -38,23 +38,20 @@ export default async function BevestigingPage({
         ? "Deze aanvraag was al goedgekeurd."
         : decision === "declined"
           ? "Deze aanvraag was al afgewezen."
-          : "Deze aanvraag werd al eerder behandeld.";
+          : "Deze aanvraag is al eerder behandeld.";
   } else if (status === "error") {
     title = "Er ging iets mis";
     body =
-      "De status kon niet worden bijgewerkt. Probeer de link opnieuw of kijk later nog eens.";
+      "De status is niet bijgewerkt. Probeer de link nog eens, of kijk later opnieuw.";
   }
 
   return (
-    <div className="site-shell flex min-h-[60svh] items-center py-20">
-      <div className="max-w-xl">
-        <p className="section-label">Beheer</p>
-        <hr className="section-rule mt-4" />
-        <h1 className="display mt-6 text-5xl text-espresso sm:text-6xl">
-          {title}
-        </h1>
-        <p className="mt-7 text-lg leading-relaxed text-ink-soft">{body}</p>
-        <Link href="/" className="btn btn-primary mt-9">
+    <div className="shell quiet-page">
+      <p className="eyebrow">Agenda</p>
+      <h1>{title}</h1>
+      <p className="lede">{body}</p>
+      <div className="actions">
+        <Link className="btn" href="/">
           Naar de website
         </Link>
       </div>
