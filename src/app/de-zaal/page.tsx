@@ -1,182 +1,88 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { Reveal } from "@/components/Reveal";
-import { photos } from "@/lib/media";
+import { PageIntro } from "@/components/PageIntro";
+import { Photo } from "@/components/Photo";
+import { SeatDots } from "@/components/SeatDots";
+import { photos } from "@/lib/photos";
 import { site } from "@/lib/site";
-import { getContent } from "@/lib/content";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "De zaal",
-  description: `Het zaaltje van ${site.name}: huiselijk, familiaal en comfortabel voor zo'n ${site.capacity} personen.`,
+  description: `Zaaltje van ${site.name} in ${site.place}, voor ongeveer ${site.capacity} personen. Verjaardag, communie, koffietafel, vergadering of workshop. Aanvraag, geen online betaling.`,
 };
 
-export default async function DeZaalPage() {
-  const content = await getContent();
+const occasions = [
+  "Verjaardag",
+  "Communie of lentefeest",
+  "Koffietafel",
+  "Baby shower",
+  "Familiefeest",
+  "Vergadering",
+  "Workshop",
+];
+
+export default function DeZaalPage() {
   return (
-    <>
-      {/* Hero with heading */}
-      <section className="site-shell py-20 sm:py-24">
-        <Reveal>
-          <p className="section-label">De zaal</p>
-          <hr className="section-rule mt-4" />
-          <h1 className="display mt-6 max-w-3xl text-5xl text-espresso sm:text-6xl lg:text-7xl">
-            Huiselijk,{" "}
-            <span className="display-italic text-olive">niet chique</span>.
-          </h1>
-          <p className="mt-7 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-soft sm:text-lg sm:leading-[1.8]">
-            {site.description} Comfortabel voor zo&apos;n {site.capacity}{" "}
-            personen — kleinschalig genoeg om het gezellig te houden.
+    <div className="shell">
+      <PageIntro
+        eyebrow={`Ongeveer ${site.capacity} personen`}
+        title="De zaal"
+        lede="Een klein zaaltje in de hoeve. Huiselijk en familiaal. Iedereen mag er zijn wie die is, zonder teveel poespas."
+      />
+
+      <Photo
+        photo={photos.zaal}
+        caption="De zaal, met de lange tafel."
+        kind="feature"
+        tilt={-0.6}
+        className="feature-print"
+        sizes="(max-width: 899px) calc(100vw - 2.5rem), 560px"
+      />
+
+      <div className="split">
+        <div>
+          <h2 className="section-title">Hoe het zit</h2>
+          <ul className="plain-list">
+            <li>Ongeveer {site.capacity} personen, comfortabel gezeten.</li>
+            <li>{site.signLine}.</li>
+            <li>Je vraagt een datum aan. We mailen of het past.</li>
+            <li>Geen betaling via de site.</li>
+          </ul>
+          <SeatDots filled={site.capacity} />
+          <p className="hint" style={{ marginTop: "0.7rem" }}>
+            Elke stip is een comfortabele plaats.
           </p>
-        </Reveal>
-
-        {/* Photo triptych: interieur / hero overview / terras */}
-        <div className="mt-16 grid items-end gap-4 sm:grid-cols-[1fr_1.35fr_1fr]">
-          <Reveal>
-            <div className="photo-frame">
-              <div className="relative aspect-[3/4]">
-                <Image
-                  src={photos.interieur.src}
-                  alt={photos.interieur.alt}
-                  fill
-                  sizes="30vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={100}>
-            <div className="photo-frame">
-              <div className="relative aspect-[4/3.6]">
-                <Image
-                  src={photos.hero.src}
-                  alt={photos.hero.alt}
-                  fill
-                  sizes="40vw"
-                  priority
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="photo-frame">
-              <div className="relative aspect-[3/4]">
-                <Image
-                  src={photos.terras.src}
-                  alt={photos.terras.alt}
-                  fill
-                  sizes="30vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
         </div>
-      </section>
-
-      {/* Occasions strip */}
-      <section className="border-y border-line/60 bg-paper/60">
-        <div className="site-shell py-16 sm:py-20">
-          <Reveal>
-            <h2 className="display text-3xl text-espresso sm:text-4xl">
-              Wat hier past
-            </h2>
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              {content.occasions.map((item) => (
-                <span key={item} className="chip">
-                  {item}
-                </span>
-              ))}
-            </div>
-            <p className="mt-7 max-w-xl leading-relaxed text-ink-soft">
-              Geen strakke eventzaal — wel een plek waar mensen zich meteen
-              thuis voelen en mooie herinneringen maken.
-            </p>
-          </Reveal>
+        <div>
+          <h2 className="section-title">Waarvoor je de zaal kan vragen</h2>
+          <ul className="plain-list">
+            {occasions.map((occasion) => (
+              <li key={occasion}>{occasion}</li>
+            ))}
+          </ul>
+          <p>
+            Vergaderingen en workshops staan ook op het bord aan de straat.
+            Voor de rest: schrijf in je aanvraag wat je viert of wat je van
+            plan bent.
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* Full-width hoeve exterior */}
-      <section className="py-16 sm:py-20">
-        <div className="site-shell-wide">
-          <Reveal>
-            <div className="photo-frame">
-              <div className="relative aspect-[21/9] sm:aspect-[21/8]">
-                <Image
-                  src={photos.hoeve.src}
-                  alt={photos.hoeve.alt}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <div className="print-cluster">
+        <Photo photo={photos.kamer} caption="Bij kaarslicht" tilt={-1.2} wash />
+        <Photo photo={photos.zaalBloemen} caption="Bloemen op tafel" tilt={1} wash />
+        <Photo photo={photos.kaars} caption="Een stille hoek" tilt={-0.7} wash />
+        <Photo photo={photos.lamp} caption="De lange tafel" tilt={1.2} wash />
+      </div>
 
-      {/* Features */}
-      <section className="site-shell py-12 sm:py-16">
-        <Reveal>
-          <p className="section-label">Wat je kunt verwachten</p>
-          <hr className="section-rule mt-4" />
-        </Reveal>
-        <div className="mt-10 grid gap-0 sm:grid-cols-2">
-          {content.deZaalFeatures.map((feature, i) => (
-            <Reveal key={feature.title} delay={(i % 2) * 120}>
-              <div
-                className={`py-8 sm:px-8 lg:px-10 ${
-                  i >= 2 ? "border-t border-line" : ""
-                } ${i % 2 !== 0 ? "sm:border-l sm:border-line" : "sm:pl-0"} ${
-                  i % 2 === 0 && i < 2 ? "sm:pr-8 lg:pr-10" : ""
-                }`}
-              >
-                <h3 className="display text-[1.35rem] text-wood">{feature.title}</h3>
-                <p className="mt-3 max-w-sm text-[0.95rem] leading-relaxed text-ink-soft">
-                  {feature.text}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="site-shell pb-8 pt-12">
-        <Reveal>
-          <div className="band-olive grain relative overflow-hidden rounded-[1.75rem]">
-            <div className="relative grid items-center md:grid-cols-[1.15fr_0.85fr]">
-              <div className="px-8 py-16 sm:px-12 sm:py-20">
-                <p className="section-label !text-caramel">Praktisch</p>
-                <h2 className="display mt-4 text-4xl text-cream sm:text-5xl">
-                  Vraag je datum aan
-                </h2>
-                <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/85">
-                  Stuur een aanvraag met je gewenste datum en aantal personen.
-                  Wij bekijken of het past in de agenda en laten je snel weten
-                  of we kunnen bevestigen. Daarna stemmen we samen alle details
-                  af.
-                </p>
-                <Link href="/aanvragen" className="btn btn-cream mt-9">
-                  Zaal aanvragen
-                </Link>
-              </div>
-              <div className="relative hidden min-h-[360px] md:block">
-                <Image
-                  src={photos.taart.src}
-                  alt={photos.taart.alt}
-                  fill
-                  sizes="40vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-    </>
+      <div className="actions">
+        <Link className="btn" href="/aanvragen">
+          Datum aanvragen
+        </Link>
+        <a className="btn btn-secondary" href={`tel:${site.phoneTel}`}>
+          Bel {site.phoneDisplay}
+        </a>
+      </div>
+    </div>
   );
 }

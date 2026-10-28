@@ -1,61 +1,44 @@
-# Handoff — ’t Zaffels Koffiehuisje
+# Handoff — Saffels koffiehuisje – De Ontwaking
+
+Concept branch: **Blauwe luiken** (`concept-v2`). Draft only. Do not treat this as the live design until it is merged.
 
 ## Live URLs
 
-- Production: https://saffels-koffiehuisje.vercel.app
+- Production (previous site, until this concept is accepted): https://saffels-koffiehuisje.vercel.app
 - GitHub: https://github.com/BeCreativeRuben/SaffelsKoffiehuisjeDeOntwaking
-- Vercel project: `studiothielman-projects/saffels-koffiehuisje` (GitHub repo connected)
 
-## How bookings work (for the owner)
+## How bookings work
 
-1. A guest fills in **Zaal aanvragen** on the website.
-2. You get an e-mail with the details and two links: **Goedkeuren** / **Afwijzen**.
+1. A guest fills in **Aanvragen** (date, time, people, occasion, name, e-mail, phone, message).
+2. The owner gets an e-mail with the details and two links: goedkeuren / afwijzen.
 3. The guest immediately gets “aanvraag ontvangen”.
-4. When you click a link, the guest gets approved or declined by e-mail, and you get a copy.
+4. When a link is opened, the guest gets approved or declined by e-mail, and the owner gets a copy.
 
-No admin login in v1 — use the e-mail links. Each link works once.
+Each link works once. The website does not take payment. After approval, contact the guest yourself for the practical details.
 
-After approval, contact the guest yourself (mail/phone) to settle practical details. The website does not handle payments.
+## Pages
 
-## How to request website changes (for Ruben ↔ client)
+Home, De zaal, Aanbod, Aanvragen, Contact, plus bedankt and the owner bevestiging screen.
 
-- No monthly fee.
-- Changes (text, photos, new section, contact details): send what should change; you get an invoice for that work only.
-- Hosting stays on free tiers as long as traffic stays modest; say so before any paid upgrade.
+## Environment
 
-## Environment setup (required before bookings work)
-
-Copy `.env.example` → `.env.local` (local) and set the same vars in the Vercel project (**Settings → Environment Variables**), then redeploy:
+Copy `.env.example` to `.env.local` and set the same variables in Vercel.
 
 | Variable | Purpose |
 |---|---|
 | `DATABASE_URL` | Neon Postgres connection string |
 | `RESEND_API_KEY` | Resend API key |
-| `FROM_EMAIL` | Sender (verify domain in Resend for production) |
-| `OWNER_EMAIL` | Where approve/decline mails go |
-| `NEXT_PUBLIC_SITE_URL` | `https://saffels-koffiehuisje.vercel.app` (or custom domain later) |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Optional public contact e-mail (preferred over OWNER_EMAIL for display) |
-| `NEXT_PUBLIC_PHONE` | Optional phone on contact page — only shown when set |
-| `NEXT_PUBLIC_ADDRESS` | Optional address — only shown when set (do not invent; Persijzerstraat only after confirmed in env) |
-| `ADMIN_PASSWORD` | Password for the `/admin` content editor — lets the owner change text, hours, and occasions |
+| `FROM_EMAIL` | Sender (verify the domain in Resend for production) |
+| `OWNER_EMAIL` | Where new requests and decision copies go. Not shown on the site. |
+| `NEXT_PUBLIC_SITE_URL` | Public URL, no trailing slash. Used in e-mail links. |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Optional. Shown on Contact only when set. |
+| `NEXT_PUBLIC_ADDRESS` | Optional. Shown only when set. Do not guess a street. |
+| `NEXT_PUBLIC_OPENING_HOURS` | Optional. Shown only when set. |
 
-Optional: run `db/schema.sql` in the Neon SQL editor (the app also creates the table on first request).
+The phone **0493 64 35 15** is on the roadside sign and is always shown.
 
-## Soft-launch checklist
+Optional: run `db/schema.sql` in Neon. The app also creates the booking table on the first request.
 
-- [x] Site deployed on Vercel, linked to GitHub
-- [x] Marketing pages online (Home, De zaal, Aanvragen, Contact, Bedankt)
-- [ ] Neon DB connected in Vercel env
-- [ ] Resend key set; send a test booking to yourself
-- [ ] Approve link works → guest “bevestiging” mail
-- [ ] Decline link works → guest “niet bevestigd” mail
-- [ ] Set NEXT_PUBLIC_* contact env when client confirms details
-- [x] Temporary zaal photos (Lochristinaar hero + sfeercrops) — swap Higgsfield stills in `src/lib/media.ts` when ready
-- [ ] Point custom domain when ready
-- [ ] Walk through one real request with the client
+## Still unknown
 
-## Content still needed from the client
-
-- Photos of the zaal
-- Exact address, phone, public e-mail
-- Opening / availability notes if she wants them public
+Street address, opening hours, public e-mail, prices, and which spelling Katleen wants as the official name. The site uses the sign: “Saffels koffiehuisje – De Ontwaking”.
