@@ -12,6 +12,7 @@ type Props = {
   caption?: string;
   tilt?: number;
   wash?: boolean;
+  steam?: boolean;
   kind?: keyof typeof sizesFor;
   sizes?: string;
   preload?: boolean;
@@ -23,6 +24,7 @@ export function Photo({
   caption,
   tilt = -1.1,
   wash = false,
+  steam = false,
   kind = "print",
   sizes,
   preload = false,
@@ -45,6 +47,13 @@ export function Photo({
           preload={preload}
           style={{ width: "100%", height: "auto" }}
         />
+        {steam ? (
+          <span className="steam" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+        ) : null}
       </div>
       {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>

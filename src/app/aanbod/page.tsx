@@ -16,8 +16,10 @@ export default function AanbodPage() {
       <PageIntro
         eyebrow="Koffie, gebak, eten"
         title="Aanbod"
-        lede="Wat er op het bord aan de straat staat, en wat je op de foto's ziet. Een vaste kaart met prijzen zetten we hier nog bij."
+        lede="Wat er op het bord aan de straat staat, en wat je op de foto’s ziet. Een vaste kaart met prijzen zetten we hier nog bij."
       />
+
+      <p className="script-line">{site.signLine}</p>
 
       <div className="fact fact-placeholder" style={{ marginTop: "1.2rem" }}>
         <div className="fact-head">
@@ -28,10 +30,20 @@ export default function AanbodPage() {
       </div>
 
       <div className="print-cluster" aria-label="Foto’s van koffie en gebak">
-        <Photo photo={photos.mokken} caption="Koffie" tilt={-1.1} wash />
-        <Photo photo={photos.baileys} caption="Met Baileys" tilt={1.05} wash />
-        <Photo photo={photos.wafels} caption="Wafels" tilt={-0.8} wash />
-        <Photo photo={photos.taart} caption="Chocoladetaart" tilt={1.15} wash />
+        <Photo photo={photos.mokken} caption="Koffie" tilt={-1.6} />
+        <Photo
+          photo={photos.baileys}
+          caption="Met Baileys"
+          tilt={1.5}
+          steam
+        />
+        <Photo
+          photo={photos.wafels}
+          caption="Wafels"
+          tilt={-1.1}
+          className="cap-sm"
+        />
+        <Photo photo={photos.taart} caption="Chocoladetaart" tilt={1.3} />
       </div>
 
       <article className="offer-block">
@@ -53,8 +65,13 @@ export default function AanbodPage() {
       </article>
 
       <div className="pair">
-        <Photo photo={photos.crumble} caption="Appelcrumble" tilt={1} wash />
-        <Photo photo={photos.oliebollen} caption="Oliebollen" tilt={-1.1} wash />
+        <Photo
+          photo={photos.crumble}
+          caption="Appelcrumble"
+          tilt={1.2}
+          className="cap-sm"
+        />
+        <Photo photo={photos.oliebollen} caption="Oliebollen" tilt={-1.4} />
       </div>
 
       <article className="offer-block">
@@ -62,8 +79,8 @@ export default function AanbodPage() {
           photo={photos.ontbijt}
           caption="De lange tafel"
           tilt={0.8}
-          kind="print"
-          className="offer-photo"
+          kind="feature"
+          className="offer-photo cap-lg"
         />
         <div className="offer-copy">
           <h2>Ontbijt na reservatie</h2>
@@ -76,12 +93,11 @@ export default function AanbodPage() {
 
       <article className="offer-block">
         <div className="pair">
-          <Photo photo={photos.soep} caption="Soep" tilt={-1} wash />
+          <Photo photo={photos.soep} caption="Soep" tilt={-1.2} />
           <Photo
             photo={photos.pannenkoek}
             caption="Hartige pannenkoek"
-            tilt={1.1}
-            wash
+            tilt={1.3}
           />
         </div>
         <div className="offer-copy">
@@ -99,8 +115,7 @@ export default function AanbodPage() {
           photo={photos.thee}
           caption="Thee op het terras"
           tilt={-0.9}
-          wash
-          className="offer-photo"
+          className="offer-photo cap-sm"
         />
         <div className="offer-copy">
           <h2>Koffietafels &amp; privéfeestjes</h2>
@@ -115,8 +130,7 @@ export default function AanbodPage() {
         <Photo
           photo={photos.soepTerras}
           caption="Buiten, als het weer het toelaat"
-          tilt={1}
-          wash
+          tilt={1.2}
           className="offer-photo"
         />
         <div className="offer-copy">

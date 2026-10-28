@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Atkinson_Hyperlegible, Lora } from "next/font/google";
+import { Atkinson_Hyperlegible, Lora, Patrick_Hand } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { absoluteSiteUrl, buildJsonLd, site } from "@/lib/site";
 import "./globals.css";
 
 const display = Lora({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   display: "swap",
   style: ["normal", "italic"],
   weight: "500",
@@ -14,16 +14,23 @@ const display = Lora({
 });
 
 const sans = Atkinson_Hyperlegible({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   display: "swap",
   weight: ["400", "700"],
   variable: "--font-sans",
 });
 
+const note = Patrick_Hand({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  variable: "--font-note",
+});
+
 const siteUrl = absoluteSiteUrl();
 
 export const viewport: Viewport = {
-  themeColor: "#1a3c56",
+  themeColor: "#2c241c",
   width: "device-width",
   initialScale: 1,
 };
@@ -86,7 +93,7 @@ export default function RootLayout({
   return (
     <html
       lang="nl-BE"
-      className={`${display.variable} ${sans.variable} h-full`}
+      className={`${display.variable} ${sans.variable} ${note.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
         <script

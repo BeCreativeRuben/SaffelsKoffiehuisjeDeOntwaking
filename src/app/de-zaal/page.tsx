@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HandNote } from "@/components/HandNote";
 import { PageIntro } from "@/components/PageIntro";
 import { Photo } from "@/components/Photo";
 import { SeatDots } from "@/components/SeatDots";
+import { ShutterWindow } from "@/components/ShutterWindow";
 import { photos } from "@/lib/photos";
 import { site } from "@/lib/site";
 
@@ -27,17 +29,22 @@ export default function DeZaalPage() {
       <PageIntro
         eyebrow={`Ongeveer ${site.capacity} personen`}
         title="De zaal"
-        lede="Een klein zaaltje in de hoeve. Huiselijk en familiaal. Iedereen mag er zijn wie die is, zonder teveel poespas."
+        lede={`Een klein zaaltje in de hoeve. Bloemen op de tafel, kaarslicht in de hoek, en ongeveer ${site.capacity} mensen comfortabel. Huiselijk, en zonder poespas.`}
       />
 
-      <Photo
+      <p className="script-line">{site.signLine}</p>
+
+      <ShutterWindow
         photo={photos.zaal}
         caption="De zaal, met de lange tafel."
-        kind="feature"
-        tilt={-0.6}
-        className="feature-print"
-        sizes="(max-width: 899px) calc(100vw - 2.5rem), 560px"
+        variant="room"
+        preload
       />
+
+      <HandNote by="Katleen">
+        Gene chique boel. Iedereen mag er zijn wie die is, zonder teveel
+        poespas.
+      </HandNote>
 
       <div className="split">
         <div>
@@ -69,10 +76,22 @@ export default function DeZaalPage() {
       </div>
 
       <div className="print-cluster">
-        <Photo photo={photos.kamer} caption="Bij kaarslicht" tilt={-1.2} wash />
-        <Photo photo={photos.zaalBloemen} caption="Bloemen op tafel" tilt={1} wash />
-        <Photo photo={photos.kaars} caption="Een stille hoek" tilt={-0.7} wash />
-        <Photo photo={photos.lamp} caption="De lange tafel" tilt={1.2} wash />
+        <Photo
+          photo={photos.kamer}
+          caption="Bij kaarslicht"
+          tilt={-1.6}
+          wash
+          className="candle-print"
+        />
+        <Photo photo={photos.zaalBloemen} caption="Bloemen op tafel" tilt={1.2} wash />
+        <Photo
+          photo={photos.kaars}
+          caption="Een stille hoek"
+          tilt={-0.9}
+          wash
+          className="candle-print"
+        />
+        <Photo photo={photos.lamp} caption="De lange tafel" tilt={1.4} wash />
       </div>
 
       <div className="actions">

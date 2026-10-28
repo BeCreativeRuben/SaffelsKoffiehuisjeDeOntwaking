@@ -1,6 +1,6 @@
 # Handoff — Saffels koffiehuisje – De Ontwaking
 
-Concept branch: **Blauwe luiken** (`concept-v2`). Draft only. Do not treat this as the live design until it is merged.
+Concept branch: **Blauwe luiken** (`concept-v2`). Draft only. Do not treat this as the live design until it is merged. The palette is warm linen, candlelight honey and wisteria; shutter blue stays the accent (header call, luiken frame, focus).
 
 ## Live URLs
 

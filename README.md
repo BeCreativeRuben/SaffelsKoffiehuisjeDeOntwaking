@@ -1,6 +1,6 @@
 # Saffels koffiehuisje – De Ontwaking
 
-Concept **Blauwe luiken**: a new site for the koffiehuisje in Zaffelare. Guests send a date request; the owner approves or declines by e-mail. No online payment.
+Concept **Blauwe luiken**: a new site for the koffiehuisje in Zaffelare. The page is warm linen, honey and wisteria, with the shutter blue kept as the accent. Guests send a date request; the owner approves or declines by e-mail. No online payment.
 
 ## Stack
 
